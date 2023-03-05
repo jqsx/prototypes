@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5493674000849377513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5493674000849377515}
+  - component: {fileID: 5493674000849377512}
+  m_Layer: 0
+  m_Name: GAMEINITIALIZER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5493674000849377515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493674000849377513}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 648.77893, y: 332.29535, z: -0.044774264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5493674000849377512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493674000849377513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96858c565932d74e88c8e7f4f110ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  registeredItems:
+  - name: Apple
+    icon: {fileID: 219665895, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: Its just an apple...
+    itemType: 1
+    itemStatistics:
+      Level: 1
+      XP: 0
+      Damage: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+  - name: Banana
+    icon: {fileID: 6482958, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: Its just a banana...
+    itemType: 1
+    itemStatistics:
+      Level: 1
+      XP: 0
+      Damage: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+  - name: Gold Coin
+    icon: {fileID: 1140110899, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: Bobux
+    itemType: 3
+    itemStatistics:
+      Level: 1
+      XP: 0
+      Damage: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+  - name: Book
+    icon: {fileID: 1932919540, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: 
+    itemType: 3
+    itemStatistics:
+      Level: 1
+      XP: 0
+      Damage: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+  - name: Basic Iron Sword
+    icon: {fileID: -1234154617, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+    description: It's sharp!
+    itemType: 0
+    itemStatistics:
+      Level: 3
+      XP: 0
+      Damage: 7
+      MoveSpeed: 0
+      AttackSpeed: 1
+  Herepls: {fileID: 6146446566919566922, guid: a7f9d02338ac1ca4ea9b9d10c7307f66, type: 3}
