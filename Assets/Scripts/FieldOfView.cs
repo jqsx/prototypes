@@ -29,7 +29,7 @@ public class FieldOfView : MonoBehaviour
         if (lastFovUpdate < Time.time)
         {
             lastFovUpdate = Time.time + 1f / updateRate;
-            transform.position = PlayerController.instance.transform.position;
+            if (PlayerController.instance) transform.position = PlayerController.instance.transform.position;
             updateMesh();
         }
     }

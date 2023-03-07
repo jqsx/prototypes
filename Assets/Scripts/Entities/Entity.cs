@@ -23,7 +23,14 @@ public class Statistics
 {
     public int Level = 1;
     public float XP = 0f;
-    public float Damage = 0f;
-    public float MoveSpeed = 0f;
-    public float AttackSpeed = 0f;
+    public float Damage = 1f;
+    public float MoveSpeed = 3f;
+    public float AttackSpeed = 1f;
+    public float MaxHealth = 20f;
+    public float Health = 20f;
+    public float Defence = 0f;
+    /// <summary>
+    /// 0.5 + RegenerationRate = Total
+    /// </summary>
+    public float RegenerationRate = 0f;
 }
