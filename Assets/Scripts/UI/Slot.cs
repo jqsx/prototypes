@@ -33,6 +33,7 @@ namespace JQUI
             base.OnPointerDown(eventData);
 
             InventoryController.instance.slotClicked(this);
+            parent.onClick(slotNumber);
         }
     }
 }

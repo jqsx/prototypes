@@ -59,6 +59,10 @@ namespace JQUI
                 if (isOpen) animator.Play("Close");
                 else animator.Play("Open");
                 isOpen = !isOpen;
+                if (!isOpen)
+                {
+                    
+                }
             }
         }
 
@@ -93,10 +97,12 @@ namespace JQUI
 [System.Serializable]
 public class Inventory
 {
+    private static List<Inventory> openInventories = new List<Inventory>();
     public ItemStack[] slots;
 
     public Inventory(int size)
     {
+        openInventories.Add(this);
         slots = new ItemStack[size];
     }
 
@@ -122,5 +128,36 @@ public class Inventory
     public ItemStack addItemToSlot(int index, ItemStack item)
     {
         return slots[index].addItem(item);
+    }
+
+    /// <summary>
+    /// Occurs when the player closes the main inventory,
+    /// this event includes the main inventory and other containers
+    /// </summary>
+    public virtual void onClose()
+    {
+
+    }
+
+    /// <summary>
+    /// Occurs when clicking a slot in the inventory <br></br>
+    /// Includes the index of the clicked slot.
+    /// </summary>
+    /// <param name="index"></param>
+    public virtual void onClick(int index)
+    {
+
+    }
+
+    /// <summary>
+    /// This just launches an event to close all<br></br> inventories that have been opened when the <br></br>player closes the main inventory
+    /// </summary>
+    public static void closeOpenInventories()
+    {
+        foreach(Inventory inv in openInventories)
+        {
+            inv.onClose();
+        }
+        openInventories.Clear();
     }
 }
