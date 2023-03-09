@@ -10,13 +10,14 @@ public class BasicAI : Entity
     private Vector2[] castPositions = new Vector2[9];
     private Rigidbody2D rb;
     public LayerMask layerMask;
+    public Animator animator;
     private void Awake()
     {
         for(int y = -1; y <= 1; y++)
         {
             for (int x = -1; x <= 1; x++)
             {
-                castPositions[(y + 1) * 3 + x + 1] = new Vector2(x, y);
+                castPositions[(y + 1) * 3 + x + 1] = new Vector2(x / 2f, y).normalized;
             }
         }
         rb = GetComponent<Rigidbody2D>();
@@ -24,7 +25,19 @@ public class BasicAI : Entity
 
     private void Update()
     {
-        movement(CastPossibleLocations());
+        target = PlayerController.instance.transform.position;
+        Vector2 direction = CastPossibleLocations();
+        movement(direction);
+        playAnimation("WalkRight");
+        animator.transform.rotation = Quaternion.Euler(0, 180f * (direction.x > 0 ? 0f : 1f), 0f);
+    }
+
+    void playAnimation(string name)
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(1).IsName(name) && !animator.GetCurrentAnimatorStateInfo(0).IsName(name))
+        {
+            animator.Play(name);
+        }
     }
 
     private Vector2 CastPossibleLocations()
@@ -32,7 +45,7 @@ public class BasicAI : Entity
         Vector2 closest = transform.position;
         foreach(Vector2 pos in castPositions)
         {
-            if (optimizedDistance(closest, target) > optimizedDistance(closest, pos + (Vector2)transform.position))
+            if (optimizedDistance(closest, target) > optimizedDistance(target, pos + (Vector2)transform.position))
             {
                 Collider2D col = Physics2D.OverlapBox(pos + (Vector2)transform.position, Vector2.one, 0, layerMask);
                 if (!col)
@@ -53,5 +66,13 @@ public class BasicAI : Entity
     private static float optimizedDistance(Vector2 one, Vector2 two)
     {
         return Mathf.Abs(one.x - two.x) + Mathf.Abs(one.y - two.y);
+    }
+
+    private void OnDrawGizmos()
+    {
+        foreach (Vector2 pos in castPositions)
+        {
+            Gizmos.DrawWireCube((Vector2)transform.position + pos, Vector2.one);
+        }
     }
 }

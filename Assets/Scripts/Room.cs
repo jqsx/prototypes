@@ -78,7 +78,8 @@ public class Room : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).GetComponent<Renderer>().enabled = false;
+            Renderer renderer = transform.GetChild(i).GetComponent<Renderer>();
+            if (renderer) renderer.enabled = false;
         }
     }
 
@@ -86,7 +87,8 @@ public class Room : MonoBehaviour
     {
         for(int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).GetComponent<Renderer>().enabled = true;
+            Renderer renderer = transform.GetChild(i).GetComponent<Renderer>();
+            if (renderer) renderer.enabled = true;
         }
     }
 }

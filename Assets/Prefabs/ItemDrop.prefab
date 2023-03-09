@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6146446566919566920}
   - component: {fileID: 6146446566919566921}
   - component: {fileID: 6146446566919566925}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ItemDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,10 +152,15 @@ MonoBehaviour:
       icon: {fileID: 0}
       description: 
       itemType: 3
+      maxStackSize: 1
       itemStatistics:
         Level: 1
         XP: 0
         Damage: 0
         MoveSpeed: 0
         AttackSpeed: 0
+        MaxHealth: 20
+        Health: 20
+        Defence: 0
+        RegenerationRate: 0
     amount: 1
