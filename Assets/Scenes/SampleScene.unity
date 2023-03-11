@@ -1384,6 +1384,9 @@ MonoBehaviour:
   - {fileID: 8303240745298831382, guid: 3044acbb09768495f859e1ac8aeb6e13, type: 3}
   - {fileID: 8303240745298831382, guid: 3044acbb09768495f859e1ac8aeb6e13, type: 3}
   - {fileID: 4797716746742573458, guid: f51e1e4bc5c05424994ed130fe087e76, type: 3}
+  - {fileID: 5265900517243384748, guid: feca6f3025ba0481f8054baa5d9f5dee, type: 3}
+  - {fileID: 6094278841950938517, guid: 0cd0164129c194cdf986bd97650147cb, type: 3}
+  - {fileID: 6094278841950938517, guid: 0cd0164129c194cdf986bd97650147cb, type: 3}
   RoomLimit: 10
   RoomCount: 0
   _doorPrefab: {fileID: 5104029257923060551, guid: 562bc37143aa74df285ed1c653e64c93, type: 3}

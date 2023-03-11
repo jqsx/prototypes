@@ -67,7 +67,16 @@ public class roomGenerator : MonoBehaviour
             for (int i = 0; i < room.Properites.entryPoints.Length; i++)
             {
                 Vector2 door = room.Properites.entryPoints[i];
-                Vector2 _ld = new Vector2(Mathf.Round(door.x), Mathf.Round(Mathf.Round(door.y)));
+                Vector2 _ld;
+                float deg = Mathf.Atan2(door.x, door.y);
+                if (Mathf.Abs(Mathf.Cos(deg)) > Mathf.Abs(Mathf.Sin(deg)))
+                {
+                    _ld = new Vector2(Mathf.Sign(door.x), 0);
+                }
+                else
+                {
+                    _ld = new Vector2(0, Mathf.Sign(door.y));
+                }
                 //Collider2D col = Physics2D.OverlapBox((Vector2)room.gameObject.transform.position + door + _ld.normalized, new Vector2(1, 1), 0);
                 RaycastHit2D[] r = Physics2D.RaycastAll((Vector2)room.gameObject.transform.position + door, _ld, 0.5f);
                 bool hasroom = false;

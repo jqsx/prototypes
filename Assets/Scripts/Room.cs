@@ -43,36 +43,45 @@ public class Room : MonoBehaviour
         {
             Gizmos.DrawWireSphere(((Vector2)transform.position) + h, 0.2f);
             Gizmos.DrawRay(((Vector2)transform.position) + h, -h);
-            Vector2 _ld = new Vector2(Mathf.Round(h.x), Mathf.Round(Mathf.Round(h.y)));
-            Gizmos.DrawRay(transform.position + (Vector3)h, (Vector3)_ld.normalized);
+            float deg = Mathf.Atan2(h.x, h.y);
+            Vector2 _dir;
+            if (Mathf.Abs(Mathf.Cos(deg)) > Mathf.Abs(Mathf.Sin(deg)))
+            {
+                _dir = new Vector2(Mathf.Round(h.x), 0);
+            }
+            else
+            {
+                _dir = new Vector2(0, Mathf.Round(h.y));
+            }
+            Gizmos.DrawRay(transform.position + (Vector3)h, (Vector3)_dir.normalized);
         }
         Gizmos.DrawWireCube(((Vector2)transform.position), Properites.Scale);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        foreach(Room room in lastVisible) {
-            room.hideChildren();
-        }
-        lastVisible.Clear();
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    foreach(Room room in lastVisible) {
+    //        room.hideChildren();
+    //    }
+    //    lastVisible.Clear();
 
-        foreach(Vector2 room in Properites.entryPoints)
-        {
-            Vector2 _ld = new Vector2(Mathf.Round(room.x), Mathf.Round(Mathf.Round(room.y)));
-            RaycastHit2D[] castedRays = Physics2D.RaycastAll(transform.position + (Vector3)room, (Vector3)_ld.normalized, 1f);
-            foreach(RaycastHit2D ray in castedRays)
-            {
-                Room r = ray.transform.GetComponent<Room>();
-                if (r)
-                {
-                    r.showChildren();
-                    lastVisible.Add(r);
-                }
-            }
-        }
-        lastVisible.Add(this);
-        showChildren();
-    }
+    //    foreach(Vector2 room in Properites.entryPoints)
+    //    {
+    //        Vector2 _ld = new Vector2(Mathf.Round(room.x), Mathf.Round(Mathf.Round(room.y)));
+    //        RaycastHit2D[] castedRays = Physics2D.RaycastAll(transform.position + (Vector3)room, (Vector3)_ld.normalized, 1f);
+    //        foreach(RaycastHit2D ray in castedRays)
+    //        {
+    //            Room r = ray.transform.GetComponent<Room>();
+    //            if (r)
+    //            {
+    //                r.showChildren();
+    //                lastVisible.Add(r);
+    //            }
+    //        }
+    //    }
+    //    lastVisible.Add(this);
+    //    showChildren();
+    //}
 
     public void hideChildren()
     {
