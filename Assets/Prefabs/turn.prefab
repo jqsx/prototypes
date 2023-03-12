@@ -585,6 +585,8 @@ MonoBehaviour:
     - {x: -5.001, y: 0}
     - {x: 0, y: -5.001}
     generateAfter: 0
+    stopGeneratingAfter: 999
+    roomColor: {r: 1, g: 1, b: 1, a: 1}
   GEN: {fileID: 0}
 --- !u!61 &6094278841950938506
 BoxCollider2D:

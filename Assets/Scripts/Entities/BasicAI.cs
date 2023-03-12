@@ -9,8 +9,14 @@ public class BasicAI : Entity
     private Vector2 target = new Vector2(0, 0);
     private Vector2[] castPositions = new Vector2[9];
     private Rigidbody2D rb;
-    public LayerMask layerMask;
+    public LayerMask avoid;
+    public LayerMask opaqueSolids;
     public Animator animator;
+
+    Vector2 direction = Vector2.zero;
+
+    public State state = State.Wandering;
+
     private void Awake()
     {
         for(int y = -1; y <= 1; y++)
@@ -25,11 +31,25 @@ public class BasicAI : Entity
 
     private void Update()
     {
-        target = PlayerController.instance.transform.position;
-        Vector2 direction = CastPossibleLocations();
-        movement(direction);
-        playAnimation("WalkRight");
+        if (PlayerController.instance) target = PlayerController.instance.transform.position;
+        if (state == State.Chasing) Chasing();
+        else if (state == State.Wandering) Wandering();
+
+        if (optimizedDistance(transform.position, target) > 100f) state = State.Wandering;
+        if (state != State.Chasing && !Physics2D.Linecast(transform.position, target, opaqueSolids) && optimizedDistance(transform.position, target) < 30f) state = State.Chasing;
         animator.transform.rotation = Quaternion.Euler(0, 180f * (direction.x > 0 ? 0f : 1f), 0f);
+    }
+
+    private void Wandering()
+    {
+
+    }
+
+    private void Chasing()
+    {
+        Vector2 _target = CastPossibleLocations(isInTheSameRoomAsTarget() ? target : getDoorPosClosestToTarget());
+        direction = _target;
+        movement(direction);
     }
 
     void playAnimation(string name)
@@ -40,26 +60,74 @@ public class BasicAI : Entity
         }
     }
 
-    private Vector2 CastPossibleLocations()
+    private Vector2 CastPossibleLocations(Vector2 _target)
     {
         Vector2 closest = transform.position;
         foreach(Vector2 pos in castPositions)
         {
-            if (optimizedDistance(closest, target) > optimizedDistance(target, pos + (Vector2)transform.position))
+            if (optimizedDistance(closest, _target) > optimizedDistance(_target, pos + (Vector2)transform.position))
             {
-                Collider2D col = Physics2D.OverlapBox(pos + (Vector2)transform.position, Vector2.one, 0, layerMask);
-                if (!col)
+                bool isSomethingThere = false;
+                Collider2D[] col = Physics2D.OverlapBoxAll(pos + (Vector2)transform.position, Vector2.one, 0, avoid);
+                foreach(Collider2D collider in col)
                 {
-                    closest = (Vector2)transform.position + pos;
+                    if (collider.transform == transform) continue;
+                    isSomethingThere = true;
                 }
+
+                if (!isSomethingThere) closest = (Vector2)transform.position + pos;
             }
         }
 
         return closest - (Vector2)transform.position;
     }
 
+    private Vector2 getDoorPosClosestToTarget()
+    {
+        Vector2 closest = transform.position;
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 1f);
+        foreach(Collider2D c in col)
+        {
+            Room r = c.GetComponent<Room>();
+            if (r)
+            {
+                foreach(Vector2 door in r.Properites.entryPoints)
+                {
+                    Vector2 worldpos = (Vector2)r.transform.position + door;
+                    
+                    if (optimizedDistance(closest, target) > optimizedDistance(target, worldpos))
+                    {
+                        closest = worldpos;
+                    }
+                }
+            }
+        }
+
+        return closest;
+    }
+
+    private bool isInTheSameRoomAsTarget()
+    {
+        Room me = null;
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 1f);
+        foreach (Collider2D c in col)
+        {
+            Room r = c.GetComponent<Room>();
+            if (r) me = r;
+        }
+
+        col = Physics2D.OverlapCircleAll(target, 1f);
+        foreach (Collider2D c in col)
+        {
+            Room r = c.GetComponent<Room>();
+            if (r && me != null) return r == me;
+        }
+        return false;
+    }
+
     private void movement(Vector2 direction)
     {
+        if (direction.magnitude > 0.3f) playAnimation("WalkRight");
         rb.velocity = Vector2.Lerp(rb.velocity, direction * EntityStatistics.MoveSpeed, Time.deltaTime * 5f);
     }
 
@@ -74,5 +142,10 @@ public class BasicAI : Entity
         {
             Gizmos.DrawWireCube((Vector2)transform.position + pos, Vector2.one);
         }
+    }
+
+    public enum State
+    {
+        Wandering, Chasing
     }
 }

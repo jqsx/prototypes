@@ -9,10 +9,13 @@ public class RoomProperites
     public Vector2 Scale;
     public Vector2[] entryPoints = new Vector2[0];
     public int generateAfter = 0;
+    public int stopGeneratingAfter = 999;
     public RoomProperites(Vector2 Scale, Vector2[] entryPoints, GameObject prefab)
     {
         this.Prefab = prefab;
         this.Scale = Scale;
         this.entryPoints = entryPoints;
     }
+
+    public Color roomColor = Color.black;
 }

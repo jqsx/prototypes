@@ -77,6 +77,11 @@ namespace JQUI
             }
         }
 
+        public static void updateDisplay()
+        {
+            instance.updateInventoryDisplay();
+        }
+
         public void slotClicked(Slot self)
         {
             if (currentlySelected == self.slotNumber) currentlySelected = -1;
@@ -115,12 +120,37 @@ public class Inventory
         other.slots[otherslot] = lcl;
     }
 
+    public void drop(int index)
+    {
+        onDrop(index);
+        if (slots[index] == null) return;
+        PlayerController p = PlayerController.instance;
+        GAMEINITIALIZER.SpawnItem(slots[index], (Vector2)p.transform.position - ((Vector2)p.transform.position - PlayerController.mouseWorldPosition).normalized);
+        slots[index] = null;
+
+        JQUI.InventoryController.updateDisplay();
+    }
+
+    public virtual void onDrop(int index)
+    {
+
+    }
+
     public ItemStack addItemToInventory(ItemStack item)
     {
         foreach(ItemStack slot in slots)
         {
+            if (item == null) return null;
+            if (slot == null) continue;
             item = slot.addItem(item);
-            if (item == null) return null; 
+        }
+        for(int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i] == null)
+            {
+                slots[i] = item;
+                return null;
+            }
         }
         return item;
     }

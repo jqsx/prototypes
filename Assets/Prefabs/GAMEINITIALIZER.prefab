@@ -49,50 +49,71 @@ MonoBehaviour:
     icon: {fileID: 219665895, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
     description: Its just an apple...
     itemType: 1
+    maxStackSize: 1
     itemStatistics:
       Level: 1
       XP: 0
       Damage: 0
       MoveSpeed: 0
       AttackSpeed: 0
+      MaxHealth: 20
+      Defence: 0
+      RegenerationRate: 0
   - name: Banana
     icon: {fileID: 6482958, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
     description: Its just a banana...
     itemType: 1
+    maxStackSize: 1
     itemStatistics:
       Level: 1
       XP: 0
       Damage: 0
       MoveSpeed: 0
       AttackSpeed: 0
+      MaxHealth: 20
+      Defence: 0
+      RegenerationRate: 0
   - name: Gold Coin
     icon: {fileID: 1140110899, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
     description: Bobux
     itemType: 3
+    maxStackSize: 1
     itemStatistics:
       Level: 1
       XP: 0
       Damage: 0
       MoveSpeed: 0
       AttackSpeed: 0
+      MaxHealth: 20
+      Defence: 0
+      RegenerationRate: 0
   - name: Book
     icon: {fileID: 1932919540, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
     description: 
     itemType: 3
+    maxStackSize: 1
     itemStatistics:
       Level: 1
       XP: 0
       Damage: 0
       MoveSpeed: 0
       AttackSpeed: 0
+      MaxHealth: 20
+      Defence: 0
+      RegenerationRate: 0
   - name: Basic Iron Sword
     icon: {fileID: -1234154617, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
     description: It's sharp!
     itemType: 0
+    maxStackSize: 1
     itemStatistics:
       Level: 3
       XP: 0
       Damage: 7
       MoveSpeed: 0
       AttackSpeed: 1
-  Herepls: {fileID: 6146446566919566922, guid: a7f9d02338ac1ca4ea9b9d10c7307f66, type: 3}
+      MaxHealth: 20
+      Defence: 0
+      RegenerationRate: 0
+  itmdrop: {fileID: 6146446566919566925, guid: a7f9d02338ac1ca4ea9b9d10c7307f66, type: 3}
+  dmgind: {fileID: 494537516547425105, guid: ada96042b041246a6a85b6b36340b7f2, type: 3}

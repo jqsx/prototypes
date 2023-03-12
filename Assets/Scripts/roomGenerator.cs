@@ -7,7 +7,6 @@ public class roomGenerator : MonoBehaviour
 {
     public List<Room> Rooms = new List<Room>();
     public int RoomLimit = 10;
-    [HideInInspector]
     public int RoomCount = 0;
     [HideInInspector]
     public static Vector2 seed = new Vector2();
@@ -20,8 +19,11 @@ public class roomGenerator : MonoBehaviour
     static bool isClosing = false;
     public GameObject PlayerPrefab;
 
+    public static MiniMap map;
+
     void Start()
     {
+        map = GetComponent<MiniMap>();
         isClosing = false;
         GEN = this;
         //List<Room> _sorting = new List<Room>();
@@ -54,7 +56,6 @@ public class roomGenerator : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-
     }
 
     public static void closeRooms()
@@ -71,15 +72,16 @@ public class roomGenerator : MonoBehaviour
                 float deg = Mathf.Atan2(door.x, door.y);
                 if (Mathf.Abs(Mathf.Cos(deg)) > Mathf.Abs(Mathf.Sin(deg)))
                 {
-                    _ld = new Vector2(Mathf.Sign(door.x), 0);
+                    _ld = new Vector2(0, Mathf.Sign(Mathf.Cos(deg)));
                 }
                 else
                 {
-                    _ld = new Vector2(0, Mathf.Sign(door.y));
+                    _ld = new Vector2(Mathf.Sign(Mathf.Sin(deg)), 0f);
                 }
                 //Collider2D col = Physics2D.OverlapBox((Vector2)room.gameObject.transform.position + door + _ld.normalized, new Vector2(1, 1), 0);
-                RaycastHit2D[] r = Physics2D.RaycastAll((Vector2)room.gameObject.transform.position + door, _ld, 0.5f);
+                RaycastHit2D[] r = Physics2D.RaycastAll((Vector2)room.transform.position + door, _ld.normalized, 1f);
                 bool hasroom = false;
+
                 foreach (RaycastHit2D hit in r)
                 {
                     if (hit.collider.isTrigger)
@@ -92,8 +94,8 @@ public class roomGenerator : MonoBehaviour
                 if (!hasroom)
                 {
                     GameObject g = Instantiate(GEN._doorPrefab, (Vector2)room.gameObject.transform.position + door, Quaternion.identity);
-                    Vector3 s = new Vector3(Mathf.Round(Mathf.Abs(_ld.y)), Mathf.Round(Mathf.Abs(_ld.x)));
-                    g.transform.localScale = new Vector3(0.5f, 0.5f) + s.normalized * 1.5f;
+                    Vector3 s = new Vector3(Mathf.Abs(_ld.y), Mathf.Abs(_ld.x), 1);
+                    g.transform.localScale = new Vector3(1f, 1f) + s.normalized * 1.5f;
                     g.transform.parent = room.transform;
                     GEN.roomCounter++;
                 }
@@ -101,6 +103,7 @@ public class roomGenerator : MonoBehaviour
             room.hideChildren();
         }
         spawnPlayer();
+        map.GenerateMap();
     }
 
     static void spawnPlayer()
@@ -119,7 +122,8 @@ public class roomGenerator : MonoBehaviour
                 {
                     Room a = Rooms[(roomStartIndex + i) % Rooms.Count];
 
-                    if (roomCounter < a.Properites.generateAfter) continue;
+                    if (RoomCount < a.Properites.generateAfter) continue;
+                    if (RoomCount >= a.Properites.stopGeneratingAfter) continue;
 
                     if (found)
                     {
@@ -137,10 +141,6 @@ public class roomGenerator : MonoBehaviour
                         if (col) continue;
                         Instantiate(a.gameObject, (Vector2)last.gameObject.transform.position + lastDoor - door, Quaternion.identity);
                         found = true;
-
-                        Debug.Log(i);
-                        Debug.Log(roomStartIndex);
-                        Debug.Log(a.gameObject.name);
 
                         roomStartIndex += i + (int)Mathf.Round(Mathf.PerlinNoise(seed.x + last.gameObject.transform.position.x, seed.y + last.gameObject.transform.position.y) * 3f);
                         break;

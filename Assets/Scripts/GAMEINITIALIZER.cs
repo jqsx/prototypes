@@ -7,8 +7,10 @@ public class GAMEINITIALIZER : MonoBehaviour
 {
     private static List<Item> InitializedItems;
     public List<Item> registeredItems = new List<Item>();
-    public GameObject Herepls;
-    public static GameObject prefab_ItemDrop;
+    public ItemDrop itmdrop;
+    public DamageIndicator dmgind;
+    public static ItemDrop prefab_ItemDrop;
+    public static DamageIndicator prefab_DamageIndicator;
 
     private void Awake()
     {
@@ -17,7 +19,8 @@ public class GAMEINITIALIZER : MonoBehaviour
             InitializedItems = registeredItems;
         }
 
-        prefab_ItemDrop = Herepls;
+        prefab_ItemDrop = itmdrop;
+        prefab_DamageIndicator = dmgind;
     }
 
     public void debug()
@@ -42,16 +45,25 @@ public class GAMEINITIALIZER : MonoBehaviour
         }
     }
 
-    public static void SpawnItem(int id, int amount, Vector2 position)
+    public static ItemDrop SpawnItem(int id, int amount, Vector2 position)
     {
         ItemStack n = new ItemStack(getItem(id), amount);
-        GameObject g = Instantiate(prefab_ItemDrop, position, Quaternion.identity);
-        g.GetComponent<ItemDrop>().AssignItem(n);
+        return Instantiate(prefab_ItemDrop, position, Quaternion.identity).AssignItem(n);
     }
 
-    public static void SpawnItem(int id, Vector2 position)
+    public static ItemDrop SpawnItem(int id, Vector2 position)
     {
-        SpawnItem(id, 1, position);
+        return SpawnItem(id, 1, position);
+    }
+
+    public static ItemDrop SpawnItem(ItemStack itemStack, Vector2 position)
+    {
+        return Instantiate(prefab_ItemDrop, position, Quaternion.identity).AssignItem(itemStack);
+    }
+
+    public static void spawnDamageIndicator(float amount, Vector2 position)
+    {
+        Instantiate(prefab_DamageIndicator, position, Quaternion.identity).setup(amount);
     }
 }
 

@@ -9,7 +9,7 @@ public class ItemDrop : MonoBehaviour
     {
     }
 
-    public void AssignItem(ItemStack item)
+    public ItemDrop AssignItem(ItemStack item)
     {
         this.itemStack = item;
 
@@ -20,8 +20,20 @@ public class ItemDrop : MonoBehaviour
         Vector2 size = GetComponent<SpriteRenderer>().sprite.bounds.size;
         Debug.Log("Sprite bounds: " + size);
         GetComponent<BoxCollider2D>().size = size;
-        Debug.Log("ItemDrop spawned at " + transform.position); 
+        Debug.Log("ItemDrop spawned at " + transform.position);
+        return this;
     }
 
     public ItemStack itemStack;
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player player = collision.transform.GetComponent<Player>();
+        if (player)
+        {
+            itemStack = JQUI.InventoryController.instance.inventory.addItemToInventory(itemStack);
+            JQUI.InventoryController.updateDisplay();
+            if (itemStack == null) Destroy(gameObject);
+        }
+    }
 }

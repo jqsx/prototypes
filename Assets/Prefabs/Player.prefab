@@ -388,12 +388,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253e57be6915d455eb15db654a32f142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
   EntityStatistics:
     Level: 1
     XP: 0
-    Damage: 0
-    MoveSpeed: 0
-    AttackSpeed: 0
+    Damage: 3
+    MoveSpeed: 7
+    AttackSpeed: 1
+    MaxHealth: 20
+    Defence: 0
+    RegenerationRate: 0
   animator: {fileID: 4355763153713545640}
 --- !u!1001 &1233827328235662569
 PrefabInstance:

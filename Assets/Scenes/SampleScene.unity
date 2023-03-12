@@ -1002,6 +1002,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5493674000849377512, guid: baddddeec3f254948b911d9a54ef726e, type: 3}
+      propertyPath: registeredItems.Array.data[2].maxStackSize
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5493674000849377513, guid: baddddeec3f254948b911d9a54ef726e, type: 3}
       propertyPath: m_Name
       value: GAMEINITIALIZER
@@ -1345,6 +1349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2082146072}
   - component: {fileID: 2082146073}
+  - component: {fileID: 2082146074}
   m_Layer: 0
   m_Name: RoomGenerator
   m_TagString: Untagged
@@ -1380,18 +1385,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rooms:
-  - {fileID: 8303240745298831382, guid: 3044acbb09768495f859e1ac8aeb6e13, type: 3}
-  - {fileID: 8303240745298831382, guid: 3044acbb09768495f859e1ac8aeb6e13, type: 3}
+  - {fileID: 7270171511280956233, guid: 8d10d039920d1450c90d1ad893406afa, type: 3}
+  - {fileID: 7270171511280956233, guid: 8d10d039920d1450c90d1ad893406afa, type: 3}
+  - {fileID: 7270171511280956233, guid: 8d10d039920d1450c90d1ad893406afa, type: 3}
+  - {fileID: 8440465396966903714, guid: 533020f6acaac41b39a302d7f4c10a81, type: 3}
+  - {fileID: 8440465396966903714, guid: 533020f6acaac41b39a302d7f4c10a81, type: 3}
+  - {fileID: 8440465396966903714, guid: 533020f6acaac41b39a302d7f4c10a81, type: 3}
+  - {fileID: 1717112355733195464, guid: 22cd49db487f94f54913891abe77fc0e, type: 3}
+  - {fileID: 792591517472183599, guid: ca70ed4fd252749f68d43804664e4f6a, type: 3}
+  - {fileID: 1717112355733195464, guid: 22cd49db487f94f54913891abe77fc0e, type: 3}
+  - {fileID: 792591517472183599, guid: ca70ed4fd252749f68d43804664e4f6a, type: 3}
   - {fileID: 8303240745298831382, guid: 3044acbb09768495f859e1ac8aeb6e13, type: 3}
   - {fileID: 4797716746742573458, guid: f51e1e4bc5c05424994ed130fe087e76, type: 3}
-  - {fileID: 5265900517243384748, guid: feca6f3025ba0481f8054baa5d9f5dee, type: 3}
   - {fileID: 6094278841950938517, guid: 0cd0164129c194cdf986bd97650147cb, type: 3}
   - {fileID: 6094278841950938517, guid: 0cd0164129c194cdf986bd97650147cb, type: 3}
-  RoomLimit: 10
+  RoomLimit: 100
   RoomCount: 0
   _doorPrefab: {fileID: 5104029257923060551, guid: 562bc37143aa74df285ed1c653e64c93, type: 3}
   roomCounter: 0
   PlayerPrefab: {fileID: 429165778214835051, guid: 434e0ace3011f42588294ef96fefbb35, type: 3}
+--- !u!114 &2082146074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082146071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5da041d73244a4eb46cb5ae63b20f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapTexture: {fileID: 0}
 --- !u!1 &2111876767
 GameObject:
   m_ObjectHideFlags: 0

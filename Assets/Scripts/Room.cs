@@ -7,7 +7,7 @@ public class Room : MonoBehaviour
     private static List<Room> lastVisible = new List<Room>();
     public RoomProperites Properites;
     public roomGenerator GEN;
-    void Start()
+    void Awake()
     {
         if (!GEN)
         {
@@ -23,6 +23,8 @@ public class Room : MonoBehaviour
         {
             StartCoroutine(closerooms());
         }
+
+        roomGenerator.map.add(this);
     }
 
     IEnumerator neighbors()
@@ -43,15 +45,15 @@ public class Room : MonoBehaviour
         {
             Gizmos.DrawWireSphere(((Vector2)transform.position) + h, 0.2f);
             Gizmos.DrawRay(((Vector2)transform.position) + h, -h);
-            float deg = Mathf.Atan2(h.x, h.y);
+            float deg = Mathf.Atan2(h.normalized.x, h.normalized.y);
             Vector2 _dir;
             if (Mathf.Abs(Mathf.Cos(deg)) > Mathf.Abs(Mathf.Sin(deg)))
             {
-                _dir = new Vector2(Mathf.Round(h.x), 0);
+                _dir = new Vector2(0, Mathf.Sign(Mathf.Cos(deg)));
             }
             else
             {
-                _dir = new Vector2(0, Mathf.Round(h.y));
+                _dir = new Vector2(Mathf.Sign(Mathf.Sin(deg)), 0f);
             }
             Gizmos.DrawRay(transform.position + (Vector3)h, (Vector3)_dir.normalized);
         }

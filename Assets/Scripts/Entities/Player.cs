@@ -26,7 +26,11 @@ public class Player : Entity
 
         if (Input.GetButtonDown("Fire1"))
         {
-            playAnimation("SwingRight");
+            if (playAnimation("SwingRight"))
+            {
+                Attack(((Vector2)transform.position - PlayerController.mouseWorldPosition).normalized);
+
+            }
         }
         if (Input.GetButtonDown("Fire2"))
         {
@@ -43,11 +47,13 @@ public class Player : Entity
         }
     }
 
-    void playAnimation(string name)
+    public bool playAnimation(string name)
     {
         if (!animator.GetCurrentAnimatorStateInfo(1).IsName(name) && !animator.GetCurrentAnimatorStateInfo(0).IsName(name))
         {
             animator.Play(name);
+            return true;
         }
+        return false;
     }
 }

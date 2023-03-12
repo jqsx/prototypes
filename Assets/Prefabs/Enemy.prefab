@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad969f8d1d0949719a43b966c06d822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
   EntityStatistics:
     Level: 1
     XP: 0
@@ -128,13 +129,16 @@ MonoBehaviour:
     MoveSpeed: 3
     AttackSpeed: 1
     MaxHealth: 20
-    Health: 20
     Defence: 0
     RegenerationRate: 0
-  layerMask:
+  avoid:
+    serializedVersion: 2
+    m_Bits: 136
+  opaqueSolids:
     serializedVersion: 2
     m_Bits: 8
   animator: {fileID: 3161473561168822325}
+  state: 0
 --- !u!61 &3880586609151786162
 BoxCollider2D:
   m_ObjectHideFlags: 0
