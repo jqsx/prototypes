@@ -36,7 +36,7 @@ public class Entity : MonoBehaviour
             if (rb) rb.velocity += from.GetComponent<Rigidbody2D>().velocity / 2f;
         }
         Health = Mathf.Clamp(Health - amount, 0, EntityStatistics.MaxHealth);
-        GAMEINITIALIZER.spawnDamageIndicator(amount, transform.position);
+        GAMEINITIALIZER.spawnTextIndicator(amount, transform.position);
         if (Health == 0)
         {
             death();

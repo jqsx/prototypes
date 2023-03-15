@@ -61,9 +61,14 @@ public class GAMEINITIALIZER : MonoBehaviour
         return Instantiate(prefab_ItemDrop, position, Quaternion.identity).AssignItem(itemStack);
     }
 
-    public static void spawnDamageIndicator(float amount, Vector2 position)
+    public static void spawnTextIndicator(float amount, Vector2 position)
     {
         Instantiate(prefab_DamageIndicator, position, Quaternion.identity).setup(amount);
+    }
+
+    public static void spawnTextIndicator(float amount, Vector2 position, Color color)
+    {
+        Instantiate(prefab_DamageIndicator, position, Quaternion.identity).setup(amount).setColor(color);
     }
 }
 

@@ -6,6 +6,13 @@ public class DamageIndicator : MonoBehaviour
 {
     public TMPro.TMP_Text text;
     float time = 0f;
+    private bool smoothDisplay = false;
+    public float amount = 0f;
+    private float displayAmount = 0f;
+
+    private string prefix = "";
+    private string suffix = "";
+
     private void Start()
     {
         time = Time.time;
@@ -13,18 +20,47 @@ public class DamageIndicator : MonoBehaviour
     }
     void Update()
     {
-        if (time + 5f < Time.time)
+        if (time + 1f < Time.time)
         {
             Destroy(gameObject);
         }
         else
         {
             transform.position += new Vector3(0, 0.5f) * Time.deltaTime;
+            displayAmount = Mathf.Lerp(displayAmount, amount, Time.deltaTime * 20f);
+            if (smoothDisplay) text.text = suffix + (Mathf.Round(displayAmount * 100f) / 100f).ToString() + prefix;
         }
     }
 
-    public void setup(float amount)
+    public DamageIndicator setup(float amount)
     {
-        text.text = amount.ToString();
+        this.amount = amount;
+        text.text = suffix + amount.ToString() + prefix;
+        return this;
+    }
+
+    public DamageIndicator setColor(Color color)
+    {
+        text.color = color;
+        return this;
+    }
+
+    public DamageIndicator setSmooth(bool isSmooth)
+    {
+        smoothDisplay = isSmooth;
+        text.text = suffix + amount.ToString() + prefix;
+        return this;
+    }
+
+    public DamageIndicator setPrefix(string prefix)
+    {
+        this.prefix = prefix;
+        return this;
+    }
+
+    public DamageIndicator setSuffix(string suffix)
+    {
+        this.suffix = suffix;
+        return this;
     }
 }
