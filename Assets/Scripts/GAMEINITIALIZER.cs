@@ -70,6 +70,11 @@ public class GAMEINITIALIZER : MonoBehaviour
     {
         Instantiate(prefab_DamageIndicator, position, Quaternion.identity).setup(amount).setColor(color);
     }
+
+    public static void spawnDamageIndicator(float amount, Vector2 position)
+    {
+        Instantiate(prefab_DamageIndicator, position, Quaternion.identity).setup(amount).parseDamageTextAsColors();
+    }
 }
 
 [System.Serializable]
