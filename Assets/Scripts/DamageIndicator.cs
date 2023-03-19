@@ -6,6 +6,7 @@ public class DamageIndicator : MonoBehaviour
 {
     public TMPro.TMP_Text text;
     float time = 0f;
+    private float lifetime = 1f;
     private bool smoothDisplay = false;
     private bool isString = false;
     public float amount = 0f;
@@ -21,7 +22,7 @@ public class DamageIndicator : MonoBehaviour
     }
     void Update()
     {
-        if (time + 1f < Time.time)
+        if (time + lifetime < Time.time)
         {
             Destroy(gameObject);
         }
