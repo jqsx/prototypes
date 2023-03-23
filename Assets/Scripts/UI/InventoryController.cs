@@ -10,7 +10,7 @@ namespace JQUI
     {
         public static InventoryController instance;
         public int size = 15;
-        public Inventory inventory;
+        public static Inventory inventory;
         Animator animator;
         bool isOpen = false;
         public Transform visualSlotParent;
@@ -22,8 +22,11 @@ namespace JQUI
         {
             animator = GetComponent<Animator>();
             animator.Play("Close");
-            inventory = new Inventory(size);
             instance = this;
+            if (inventory == null)
+            {
+                inventory = new Inventory(size);
+            }
             generateInventory();
         }
 

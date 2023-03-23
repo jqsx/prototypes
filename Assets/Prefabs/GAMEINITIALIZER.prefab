@@ -117,3 +117,5 @@ MonoBehaviour:
       RegenerationRate: 0
   itmdrop: {fileID: 6146446566919566925, guid: a7f9d02338ac1ca4ea9b9d10c7307f66, type: 3}
   dmgind: {fileID: 494537516547425105, guid: ada96042b041246a6a85b6b36340b7f2, type: 3}
+  player_prefab: {fileID: 8539958677164663174, guid: 434e0ace3011f42588294ef96fefbb35, type: 3}
+  autoSpawnPlayer: 1

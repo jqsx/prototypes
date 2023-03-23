@@ -11,6 +11,8 @@ public class GAMEINITIALIZER : MonoBehaviour
     public DamageIndicator dmgind;
     public static ItemDrop prefab_ItemDrop;
     public static DamageIndicator prefab_DamageIndicator;
+    public Player player_prefab;
+    public bool autoSpawnPlayer = true;
 
     private void Awake()
     {
@@ -21,6 +23,11 @@ public class GAMEINITIALIZER : MonoBehaviour
 
         prefab_ItemDrop = itmdrop;
         prefab_DamageIndicator = dmgind;
+
+        if (PlayerController.instance == null && autoSpawnPlayer)
+        {
+            Instantiate(player_prefab, transform.position, Quaternion.identity);
+        }
     }
 
     public void debug()
