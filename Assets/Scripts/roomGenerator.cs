@@ -8,8 +8,7 @@ public class roomGenerator : MonoBehaviour
     public List<Room> Rooms = new List<Room>();
     public int RoomLimit = 10;
     public int RoomCount = 0;
-    [HideInInspector]
-    public static Vector2 globalSeed;
+    
     public static Vector2 overworldDungeonPos = new Vector2(0, 0);
     public Vector2 seed = new Vector2();
     public static roomGenerator GEN;
@@ -23,18 +22,13 @@ public class roomGenerator : MonoBehaviour
 
     public static MiniMap map;
 
-    private void Start()
-    {
-        globalSeed = new Vector2(Random.Range(-1000f, 1000f), Random.Range(-1000f, 1000f));
-    }
-
     void Awake()
     {
         map = GetComponent<MiniMap>();
         isClosing = false;
         GEN = this;
 
-        seed = globalSeed + overworldDungeonPos;
+        seed = GAMEINITIALIZER.globalSeed + overworldDungeonPos;
 
         generateRoom(null);
     }

@@ -13,11 +13,13 @@ namespace JQUI
         public static Inventory inventory;
         Animator animator;
         bool isOpen = false;
+        public Transform hotbarSlotParent;
         public Transform visualSlotParent;
         public int currentlySelected = -1;
         public GameObject prefab_slot;
         public ItemStack cursor = null;
         public Sprite noitem;
+        public Slot[] allSlots;
         private void Awake()
         {
             animator = GetComponent<Animator>();
@@ -32,24 +34,35 @@ namespace JQUI
 
         void generateInventory()
         {
-            for (int i = 0; i < visualSlotParent.childCount; i++)
+
+            for (int i = 0; i < allSlots.Length; i++)
             {
-                Destroy(visualSlotParent.GetChild(i).gameObject);
+                Destroy(allSlots[i].gameObject);
             }
 
-            for(int i = 0; i < size; i++)
+            allSlots = new Slot[size];
+
+            for (int i = 0; i < size; i++)
             {
-                Slot slot = generateNewSlotObject();
+                Slot slot = generateNewSlotObject(i);
                 slot.slotNumber = i;
+                allSlots[i] = slot;
                 slot.parent = inventory;
             }
             updateInventoryDisplay();
         }
 
-        Slot generateNewSlotObject()
+        Slot generateNewSlotObject(int i)
         {
             GameObject slt = Instantiate(prefab_slot);
-            slt.transform.parent = visualSlotParent;
+            if (i < 3)
+            {
+                slt.transform.parent = hotbarSlotParent;
+            }
+            else
+            {
+                slt.transform.parent = visualSlotParent;
+            }
             return slt.GetComponent<Slot>();
         }
 
@@ -71,12 +84,12 @@ namespace JQUI
 
         public void updateInventoryDisplay()
         {
-            for (int i = 0; i < visualSlotParent.childCount; i++)
+            for (int i = 0; i < allSlots.Length; i++)
             {
                 ItemStack slot = inventory.slots[i];
                 Sprite icon = noitem;
                 if (slot != null) icon = slot.item.icon;
-                visualSlotParent.GetChild(i).GetChild(0).GetComponent<Image>().sprite = icon;
+                allSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = icon;
             }
         }
 
@@ -94,7 +107,7 @@ namespace JQUI
                 currentlySelected = -1;
                 updateInventoryDisplay();
             }
-            else
+            else if (self.parent.slots[self.slotNumber] != null)
             {
                 currentlySelected = self.slotNumber;
             }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +12,13 @@ public class GAMEINITIALIZER : MonoBehaviour
     public static DamageIndicator prefab_DamageIndicator;
     public Player player_prefab;
     public bool autoSpawnPlayer = true;
+    [HideInInspector]
+    public static Vector2 globalSeed;
+
+    private void Start()
+    {
+        globalSeed = new Vector2(Random.Range(-1000f, 1000f), Random.Range(-1000f, 1000f));
+    }
 
     private void Awake()
     {
@@ -48,7 +54,7 @@ public class GAMEINITIALIZER : MonoBehaviour
             return InitializedItems[id];
         } catch
         {
-            throw new Exception("INVALID ITEM ID PROVIDED, COULDN'T RETRIEVE ITEM!");
+            throw new System.Exception("INVALID ITEM ID PROVIDED, COULDN'T RETRIEVE ITEM!");
         }
     }
 
