@@ -20,6 +20,9 @@ namespace JQUI
         public ItemStack cursor = null;
         public Sprite noitem;
         public Slot[] allSlots;
+
+        public int selectedSlot = 0;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
@@ -52,6 +55,22 @@ namespace JQUI
             updateInventoryDisplay();
         }
 
+        void UpdateInventoryInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                selectedSlot = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                selectedSlot = 1;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                selectedSlot = 2;
+            }
+        }
+
         Slot generateNewSlotObject(int i)
         {
             GameObject slt = Instantiate(prefab_slot);
@@ -80,6 +99,8 @@ namespace JQUI
                     
                 }
             }
+
+            UpdateInventoryInput();
         }
 
         public void updateInventoryDisplay()
