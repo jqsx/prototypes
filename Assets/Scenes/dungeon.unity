@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Setup
       objectReference: {fileID: 0}
+    - target: {fileID: 4479136676804435082, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
+      propertyPath: autoSpawnPlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7356687639295454664, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1

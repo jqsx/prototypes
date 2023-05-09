@@ -7,6 +7,7 @@ public class Entity : MonoBehaviour
     [Header("ENTITY PARAMETERS")]
     public float Health = 20f;
     public Statistics EntityStatistics = new Statistics();
+    public Statistics EquipmentStatistics = new Statistics();
 
     private float regenDelay = 0f;
     private float lastRegenTick = 0f;
@@ -86,7 +87,7 @@ public class Entity : MonoBehaviour
 
     }
 
-    public void Attack(Vector2 direction)
+    public void Attack(Vector2 direction, bool isCrit)
     {
         Collider2D[] all = Physics2D.OverlapBoxAll((Vector2)transform.position - direction, new Vector2(1, 2), Mathf.Atan2(direction.x, direction.y));
         foreach(Collider2D col in all)
@@ -95,7 +96,7 @@ public class Entity : MonoBehaviour
             Entity entity = col.GetComponent<Entity>();
             if (entity)
             {
-                entity.damage(EntityStatistics.Damage, this);
+                entity.damage((EntityStatistics.Damage + EquipmentStatistics.Damage) * (1.5f + EntityStatistics.CritDamage + EquipmentStatistics.CritDamage), this);
             }
         }
     }
@@ -107,10 +108,13 @@ public class Statistics
     public int Level = 1;
     public float XP = 0f;
     public float Damage = 1f;
+    public float CritDamage = 0f;
+    public float CritChance = 0.3f;
     public float MoveSpeed = 3f;
     public float AttackSpeed = 1f;
     public float MaxHealth = 20f;
     public float Defence = 0f;
+    public float KnockBackResistance = 0f;
     /// <summary>
     /// 0.5 * (1f - RegenerationRate) = Regen tick health basically
     /// </summary>

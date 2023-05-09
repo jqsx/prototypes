@@ -7,6 +7,8 @@ public class Player : Entity
     public Animator animator;
     Rigidbody2D rb;
     float lastDirectionx = 1f;
+
+    public 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,15 +23,17 @@ public class Player : Entity
         lastDirectionx = differnce != 0 ? differnce : lastDirectionx;
         lastDirectionx = moveDirection.x != 0 ? moveDirection.x : lastDirectionx;
 
-
         animator.transform.parent.rotation = Quaternion.Euler(0, lastDirectionx < 0 ? 180f : 0f, 0);
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (playAnimation("SwingRight"))
+            if (Random.Range(0f, 1f) < Mathf.Clamp(EntityStatistics.CritChance + EquipmentStatistics.CritChance, 0f, 1f) && !isPlaying("Stab") && playAnimation("SwingRight"))
             {
-                Attack(((Vector2)transform.position - PlayerController.mouseWorldPosition).normalized);
-
+                Attack(((Vector2)transform.position - PlayerController.mouseWorldPosition).normalized, true);
+            }
+            else if (!isPlaying("SwingRight") && playAnimation("Stab"))
+            {
+                Attack(((Vector2)transform.position - PlayerController.mouseWorldPosition).normalized, false);
             }
         }
         if (Input.GetButtonDown("Fire2"))
@@ -55,5 +59,17 @@ public class Player : Entity
             return true;
         }
         return false;
+    }
+
+    public bool isPlaying(string name)
+    {
+        return animator.GetCurrentAnimatorStateInfo(1).IsName(name) || animator.GetCurrentAnimatorStateInfo(0).IsName(name);
+    }
+
+    public override void onDamage(EntityDamageEvent e)
+    {
+        base.onDamage(e);
+
+        rb.AddForce(1000f * (1f - EntityStatistics.KnockBackResistance - EquipmentStatistics.KnockBackResistance) * (transform.position - e.from.transform.position).normalized);
     }
 }

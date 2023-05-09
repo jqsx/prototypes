@@ -144,6 +144,13 @@ public class BasicAI : Entity
         }
     }
 
+    public override void onDamage(EntityDamageEvent e)
+    {
+        base.onDamage(e);
+
+        rb.AddForce(1000f * (1f - EntityStatistics.KnockBackResistance - EquipmentStatistics.KnockBackResistance) * (transform.position - e.from.transform.position).normalized);
+    }
+
     public enum State
     {
         Wandering, Chasing
