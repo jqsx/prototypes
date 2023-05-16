@@ -148,7 +148,7 @@ public class BasicAI : Entity
     {
         base.onDamage(e);
 
-        rb.AddForce(1000f * (1f - EntityStatistics.KnockBackResistance - EquipmentStatistics.KnockBackResistance) * (transform.position - e.from.transform.position).normalized);
+        rb.AddForce(500f * (1f - EntityStatistics.KnockBackResistance - EquipmentStatistics.KnockBackResistance) * (transform.position - e.from.transform.position).normalized);
     }
 
     public enum State
