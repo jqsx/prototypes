@@ -10,6 +10,8 @@ public class MiniMap : MonoBehaviour
 
     public Texture2D mapTexture;
 
+    public RectTransform content;
+
     private void Awake()
     {
         data.Clear();

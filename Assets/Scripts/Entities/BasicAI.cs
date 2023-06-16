@@ -128,6 +128,7 @@ public class BasicAI : Entity
     private void movement(Vector2 direction)
     {
         if (direction.magnitude > 0.3f) playAnimation("WalkRight");
+        else playAnimation("idle");
         rb.velocity = Vector2.Lerp(rb.velocity, direction * EntityStatistics.MoveSpeed, Time.deltaTime * 5f);
     }
 
@@ -148,7 +149,7 @@ public class BasicAI : Entity
     {
         base.onDamage(e);
 
-        rb.AddForce(1000f * (1f - EntityStatistics.KnockBackResistance - EquipmentStatistics.KnockBackResistance) * (transform.position - e.from.transform.position).normalized);
+        rb.AddForce(300f * (1f - EntityStatistics.KnockBackResistance - EquipmentStatistics.KnockBackResistance) * (transform.position - e.from.transform.position).normalized);
     }
 
     public enum State

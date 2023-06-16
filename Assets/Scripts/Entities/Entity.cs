@@ -31,11 +31,15 @@ public class Entity : MonoBehaviour
         EntityDamageEvent e = new EntityDamageEvent(amount, from, damageCause);
         onDamage(e);
         if (e.isCancelled()) return;
+
         if (from != null)
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             if (rb) rb.velocity += from.GetComponent<Rigidbody2D>().velocity / 2f;
         }
+
+        GAMEINITIALIZER.SpawnBloodSplatter(transform.position);
+
         Health = Mathf.Clamp(Health - amount, 0, EntityStatistics.MaxHealth);
         GAMEINITIALIZER.spawnDamageIndicator(amount, transform.position);
         if (Health == 0)

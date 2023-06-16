@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class GAMEINITIALIZER : MonoBehaviour
 {
+    static GAMEINITIALIZER instance;
     private static List<Item> InitializedItems;
     public List<Item> registeredItems = new List<Item>();
+
+    [Header("Global Prefabs")]
     public ItemDrop itmdrop;
     public DamageIndicator dmgind;
     public static ItemDrop prefab_ItemDrop;
     public static DamageIndicator prefab_DamageIndicator;
     public Player player_prefab;
+
+    public ParticleSystem bloodSplatter;
+    public static ParticleSystem prefab_bloodSplatter;
+
+    [Header("Global Settings")]
     public bool autoSpawnPlayer = true;
     [HideInInspector]
     public static Vector2 globalSeed;
@@ -18,10 +26,13 @@ public class GAMEINITIALIZER : MonoBehaviour
     private void Start()
     {
         globalSeed = new Vector2(Random.Range(-1000f, 1000f), Random.Range(-1000f, 1000f));
+
     }
 
     private void Awake()
     {
+        Debug.Log("Initializing Game data");
+        instance = this;
         if (InitializedItems == null)
         {
             InitializedItems = registeredItems;
@@ -29,11 +40,13 @@ public class GAMEINITIALIZER : MonoBehaviour
 
         prefab_ItemDrop = itmdrop;
         prefab_DamageIndicator = dmgind;
+        prefab_bloodSplatter = bloodSplatter;
 
         if (PlayerController.instance == null && autoSpawnPlayer)
         {
             Instantiate(player_prefab, transform.position, Quaternion.identity);
         }
+        Debug.Log("Initialized Game data");
     }
 
     public void debug()
@@ -56,6 +69,11 @@ public class GAMEINITIALIZER : MonoBehaviour
         {
             throw new System.Exception("INVALID ITEM ID PROVIDED, COULDN'T RETRIEVE ITEM!");
         }
+    }
+
+    public static void SpawnBloodSplatter(Vector2 position)
+    {
+        instance.StartCoroutine(instance.DestroyObjectIn(Instantiate(prefab_bloodSplatter, position, Quaternion.identity).gameObject, prefab_bloodSplatter.main.duration));
     }
 
     public static ItemDrop SpawnItem(int id, int amount, Vector2 position)
@@ -87,6 +105,12 @@ public class GAMEINITIALIZER : MonoBehaviour
     public static void spawnDamageIndicator(float amount, Vector2 position)
     {
         Instantiate(prefab_DamageIndicator, position, Quaternion.identity).setup(amount).parseDamageTextAsColors();
+    }
+
+    IEnumerator DestroyObjectIn(GameObject gm, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gm);
     }
 }
 
