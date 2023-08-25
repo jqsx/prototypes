@@ -29,5 +29,16 @@ public class EntityDamageEvent : GameEvent
 
 public class EntityDeathEvent : GameEvent
 {
+    public float amount; 
+    public Entity from; 
+    public Entity.DamageCause damageCause; 
+    public ItemStack[] droppedItems;
 
+    public EntityDeathEvent(float amount, Entity from, Entity.DamageCause damageCause, ItemStack[] droppedItems)
+    {
+        this.amount = amount;
+        this.from = from;
+        this.damageCause = damageCause;
+        this.droppedItems = droppedItems;
+    }
 }

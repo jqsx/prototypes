@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3880586609151786164}
   - component: {fileID: 3880586609151786160}
   - component: {fileID: 3880586609151786163}
+  - component: {fileID: 2070966838241793925}
   - component: {fileID: 3880586609151786162}
   m_Layer: 7
   m_Name: Enemy
@@ -126,10 +127,25 @@ MonoBehaviour:
     Level: 1
     XP: 0
     Damage: 1
+    CritDamage: 0
+    CritChance: 0.3
     MoveSpeed: 3
     AttackSpeed: 1
     MaxHealth: 20
     Defence: 0
+    KnockBackResistance: 0
+    RegenerationRate: 0
+  EquipmentStatistics:
+    Level: 1
+    XP: 0
+    Damage: 1
+    CritDamage: 0
+    CritChance: 0.3
+    MoveSpeed: 3
+    AttackSpeed: 1
+    MaxHealth: 20
+    Defence: 0
+    KnockBackResistance: 0
     RegenerationRate: 0
   avoid:
     serializedVersion: 2
@@ -139,6 +155,40 @@ MonoBehaviour:
     m_Bits: 8
   animator: {fileID: 3161473561168822325}
   state: 0
+--- !u!114 &2070966838241793925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3880586609151786167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f536ecf74a894bb45aa0b7af70499b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDrops:
+  - item:
+      name: Basic Iron Sword
+      icon: {fileID: -1234154617, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      description: It's sharp!
+      itemType: 0
+      maxStackSize: 1
+      itemStatistics:
+        Level: 3
+        XP: 0
+        Damage: 7
+        CritDamage: 0
+        CritChance: 0.3
+        MoveSpeed: 0
+        AttackSpeed: 1
+        MaxHealth: 20
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+    chance: 1
+    amount: {x: 1, y: 1}
+  totalDrops: {x: 1, y: 1}
 --- !u!61 &3880586609151786162
 BoxCollider2D:
   m_ObjectHideFlags: 0
