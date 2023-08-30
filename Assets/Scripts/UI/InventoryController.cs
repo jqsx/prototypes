@@ -109,8 +109,14 @@ namespace JQUI
             {
                 ItemStack slot = inventory.slots[i];
                 Sprite icon = noitem;
-                if (slot != null) icon = slot.item.icon;
+                string amount = "";
+                if (slot != null)
+                {
+                    icon = slot.item.icon;
+                    amount = "x" + slot.amount;
+                }
                 allSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = icon;
+                allSlots[i].transform.GetChild(1).GetComponent<TMPro.TMP_Text>().text = amount;
             }
         }
 

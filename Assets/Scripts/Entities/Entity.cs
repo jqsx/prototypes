@@ -31,32 +31,50 @@ public class Entity : MonoBehaviour
         EntityDamageEvent e = new EntityDamageEvent(amount, from, damageCause);
         onDamage(e);
         if (e.isCancelled()) return;
+
         if (from != null)
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             if (rb) rb.velocity += from.GetComponent<Rigidbody2D>().velocity / 2f;
         }
+
+        GAMEINITIALIZER.SpawnBloodSplatter(transform.position);
+
         Health = Mathf.Clamp(Health - amount, 0, EntityStatistics.MaxHealth);
         GAMEINITIALIZER.spawnDamageIndicator(amount, transform.position);
         if (Health == 0)
         {
-            death();
+            death(e);
         }
         regenDelay = Time.time + 2f;
     }
 
-    private void death()
+    private void death(EntityDamageEvent de)
     {
-        EntityDeathEvent e = new EntityDeathEvent();
+
+        ItemStack[] _droppedItems = new ItemStack[0];
+        EntityDrops drops;
+        if (drops = GetComponent<EntityDrops>())
+        {
+            _droppedItems = drops.executeItemDrop();
+        }
+
+        EntityDeathEvent e = new EntityDeathEvent(de.amount, de.from, de.damageCause, _droppedItems);
+
         onDeath(e);
         if (e.isCancelled()) return;
 
-        for(int i = 0; i < 5; i++)
+        /*for(int i = 0; i < 5; i++)
         {
             if (Random.Range(0f, 1f) > 0.2f * i)
             {
                 GAMEINITIALIZER.SpawnItem(2, transform.position).GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
             }
+        }*/
+
+        foreach(ItemStack itemstack in e.droppedItems)
+        {
+            GAMEINITIALIZER.SpawnItem(itemstack, transform.position).GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         }
 
         Destroy(gameObject);
