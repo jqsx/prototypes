@@ -44,23 +44,28 @@ public class Entity : MonoBehaviour
         GAMEINITIALIZER.spawnDamageIndicator(amount, transform.position);
         if (Health == 0)
         {
-            death();
+            death(amount, from, damageCause);
         }
         regenDelay = Time.time + 2f;
     }
 
-    private void death()
+    private void death(float amount, Entity from, DamageCause damageCause)
     {
-        EntityDeathEvent e = new EntityDeathEvent();
+        EntityDeathEvent e = new EntityDeathEvent(amount, from, damageCause, GetComponent<EntityDrops>());
         onDeath(e);
         if (e.isCancelled()) return;
 
-        for(int i = 0; i < 5; i++)
+        //for(int i = 0; i < 5; i++)
+        //{
+        //    if (Random.Range(0f, 1f) > 0.2f * i)
+        //    {
+        //        GAMEINITIALIZER.SpawnItem(2, transform.position).GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        //    }
+        //}
+
+        foreach (ItemStack itemStack in e.eventDrops)
         {
-            if (Random.Range(0f, 1f) > 0.2f * i)
-            {
-                GAMEINITIALIZER.SpawnItem(2, transform.position).GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            }
+            GAMEINITIALIZER.SpawnItem(itemStack, transform.position).GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         }
 
         Destroy(gameObject);

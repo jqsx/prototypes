@@ -18,6 +18,8 @@ public class GAMEINITIALIZER : MonoBehaviour
     public ParticleSystem bloodSplatter;
     public static ParticleSystem prefab_bloodSplatter;
 
+    public SpriteStorage spriteStorage = new SpriteStorage();
+
     [Header("Global Settings")]
     public bool autoSpawnPlayer = true;
     [HideInInspector]
@@ -31,6 +33,7 @@ public class GAMEINITIALIZER : MonoBehaviour
 
     private void Awake()
     {
+        spriteStorage.init();
         Debug.Log("Initializing Game data");
         instance = this;
         if (InitializedItems == null)
@@ -191,6 +194,7 @@ public class ItemStack
 
     public ItemStack addItem(ItemStack stack)
     {
+        if (stack.item != item) return stack;
         int total = stack.amount + amount;
         if (total > item.maxStackSize)
         {
@@ -203,5 +207,39 @@ public class ItemStack
             amount = total;
             return null;
         }
+    }
+}
+
+[System.Serializable]
+public class SpriteStorage
+{
+    public static SpriteStorage instance;
+    public static Dictionary<string, Sprite> weaponSprites = new Dictionary<string, Sprite>();
+    public static Dictionary<string, Sprite> armorSprites = new Dictionary<string, Sprite>();
+
+    public RegisterSprite[] Weapons;
+    public RegisterSprite[] Armor;
+
+    [System.Serializable]
+    public class RegisterSprite
+    {
+        public string name;
+        public Sprite sprite;
+    }
+
+    public void init()
+    {
+        instance = this;
+        foreach(RegisterSprite registerSprite in Weapons)
+        {
+            weaponSprites.Add(registerSprite.name, registerSprite.sprite);
+        }
+
+        foreach (RegisterSprite registerSprite in Armor)
+        {
+            armorSprites.Add(registerSprite.name, registerSprite.sprite);
+        }
+
+        Debug.Log("Initialized Sprite Storage");
     }
 }

@@ -85,14 +85,14 @@ public class DamageIndicator : MonoBehaviour
 
     public DamageIndicator parseDamageTextAsColors()
     {
-        string constructed = "";
-        string t = text.text;
-        for(int i = 0; i < t.Length; i++)
-        {
-            constructed += "<color=" + Color.Lerp(Color.white, Color.red, i / t.Length).GetHashCode().ToString() + ">" + t[i];
-        }
+        string constructed = text.text;
+        //string t = text.text;
+        //for(int i = 0; i < t.Length; i++)
+        //{
+        //    constructed += t[i];
+        //}
 
-        text.text = constructed;
+        text.text = "<color=red>" + constructed;
 
         return this;
     }
