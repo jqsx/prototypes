@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3880586609151786164}
   - component: {fileID: 3880586609151786160}
   - component: {fileID: 3880586609151786163}
-  - component: {fileID: 899119710914723833}
+  - component: {fileID: 2070966838241793925}
   - component: {fileID: 3880586609151786162}
   m_Layer: 7
   m_Name: Enemy
@@ -155,7 +155,7 @@ MonoBehaviour:
     m_Bits: 8
   animator: {fileID: 3161473561168822325}
   state: 0
---- !u!114 &899119710914723833
+--- !u!114 &2070966838241793925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,58 +164,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 3880586609151786167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f0786e43f733491e9e10bf68d1bbb7c, type: 3}
+  m_Script: {fileID: 11500000, guid: f536ecf74a894bb45aa0b7af70499b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droppedItems: []
-  amountOfDroppedItemsRange: {x: 1, y: 2}
-  dropChances:
-  - chance: 0.8
-    levelRange: {x: 0, y: 0}
-    amountRange: {x: 1, y: 5}
-    item:
-      name: Gold Coin
-      icon: {fileID: 1140110899, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
-      description: Bobux
-      itemType: 3
-      maxStackSize: 50
+  itemDrops:
+  - item:
+      name: Basic Iron Sword
+      icon: {fileID: -1234154617, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      description: It's sharp!
+      itemType: 0
+      maxStackSize: 1
       itemStatistics:
-        Level: 1
+        Level: 3
         XP: 0
-        Damage: 0
+        Damage: 7
         CritDamage: 0
         CritChance: 0.3
         MoveSpeed: 0
-        AttackSpeed: 0
+        AttackSpeed: 1
         MaxHealth: 20
         Defence: 0
         KnockBackResistance: 0
         RegenerationRate: 0
-    itemType: 3
-    preset: 1
-  - chance: 0.4
-    levelRange: {x: 1, y: 5}
-    amountRange: {x: 1, y: 1}
-    item:
-      name: Gold Coin
-      icon: {fileID: 1140110899, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
-      description: Bobux
-      itemType: 3
-      maxStackSize: 50
-      itemStatistics:
-        Level: 1
-        XP: 0
-        Damage: 0
-        CritDamage: 0
-        CritChance: 0.3
-        MoveSpeed: 0
-        AttackSpeed: 0
-        MaxHealth: 20
-        Defence: 0
-        KnockBackResistance: 0
-        RegenerationRate: 0
-    itemType: 0
-    preset: 0
+    chance: 1
+    amount: {x: 1, y: 1}
+  totalDrops: {x: 1, y: 1}
 --- !u!61 &3880586609151786162
 BoxCollider2D:
   m_ObjectHideFlags: 0
