@@ -177,17 +177,30 @@ MonoBehaviour:
     KnockBackResistance: 0
     RegenerationRate: 0
   EquipmentStatistics:
-    Level: 1
+    Level: 0
     XP: 0
-    Damage: 1
+    Damage: 0
     CritDamage: 0
-    CritChance: 0.3
-    MoveSpeed: 3
-    AttackSpeed: 1
-    MaxHealth: 20
+    CritChance: 0
+    MoveSpeed: 0
+    AttackSpeed: 0
+    MaxHealth: 0
     Defence: 0
     KnockBackResistance: 0
     RegenerationRate: 0
+  EffectStatistics:
+    Level: 1
+    XP: 0
+    Damage: 0
+    CritDamage: 0
+    CritChance: 0
+    MoveSpeed: 0
+    AttackSpeed: 0
+    MaxHealth: 0
+    Defence: 0
+    KnockBackResistance: 0
+    RegenerationRate: 0
+  faction: 0
   animator: {fileID: 4355763153713545640}
 --- !u!1001 &1233827328235662569
 PrefabInstance:

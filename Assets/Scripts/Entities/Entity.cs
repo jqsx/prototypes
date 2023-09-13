@@ -59,7 +59,8 @@ public class Entity : MonoBehaviour
         EntityDrops drops;
         if (drops = GetComponent<EntityDrops>())
         {
-            _droppedItems = drops.executeItemDrop();
+            //_droppedItems = drops.executeItemDrop();
+            drops.onDeath();
         }
 
         EntityDeathEvent e = new EntityDeathEvent(de.amount, de.from, de.damageCause, _droppedItems);
@@ -121,6 +122,16 @@ public class Entity : MonoBehaviour
             }
         }
     }
+
+    public Statistics getTotal()
+    {
+        Statistics stats = new Statistics();
+        stats.Add(EntityStatistics);
+        stats.Add(EquipmentStatistics);
+        stats.Add(EffectStatistics);
+
+        return stats;
+    }
 }
 
 [System.Serializable]
@@ -165,6 +176,22 @@ public class Statistics
         Defence -= other.Defence;
         KnockBackResistance -= other.KnockBackResistance;
         RegenerationRate -= other.RegenerationRate;
+    }
+
+    public string toString()
+    {
+        string text = "";
+        text += Level + "L\n";
+        if (Damage != 0) text += "Damage: " + Damage + "\n";
+        if (CritDamage != 0) text += "Crit.Damage: " + CritDamage + "%\n";
+        if (CritChance != 0) text += "Crit.Chance: " + CritChance + "%\n";
+        if (MoveSpeed != 0) text += "Speed: " + MoveSpeed + "\n";
+        if (AttackSpeed != 0) text += "Attack Speed: " + AttackSpeed + "\n";
+        if (MaxHealth != 0) text += "Health: " + MaxHealth + "\n";
+        if (Defence != 0) text += "Defence: " + Defence;
+        if (KnockBackResistance != 0) text += "Knockback Resistance: " + KnockBackResistance + "%\n";
+
+        return text;
     }
 }
 

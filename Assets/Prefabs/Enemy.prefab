@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3880586609151786164}
   - component: {fileID: 3880586609151786160}
   - component: {fileID: 3880586609151786163}
-  - component: {fileID: 2070966838241793925}
   - component: {fileID: 3880586609151786162}
+  - component: {fileID: 1910419939905677765}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -147,6 +147,19 @@ MonoBehaviour:
     Defence: 0
     KnockBackResistance: 0
     RegenerationRate: 0
+  EffectStatistics:
+    Level: 1
+    XP: 0
+    Damage: 0
+    CritDamage: 0
+    CritChance: 0
+    MoveSpeed: 0
+    AttackSpeed: 0
+    MaxHealth: 0
+    Defence: 0
+    KnockBackResistance: 0
+    RegenerationRate: 0
+  faction: 2
   avoid:
     serializedVersion: 2
     m_Bits: 136
@@ -155,40 +168,7 @@ MonoBehaviour:
     m_Bits: 8
   animator: {fileID: 3161473561168822325}
   state: 0
---- !u!114 &2070966838241793925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3880586609151786167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f536ecf74a894bb45aa0b7af70499b3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDrops:
-  - item:
-      name: Basic Iron Sword
-      icon: {fileID: -1234154617, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
-      description: It's sharp!
-      itemType: 0
-      maxStackSize: 1
-      itemStatistics:
-        Level: 3
-        XP: 0
-        Damage: 7
-        CritDamage: 0
-        CritChance: 0.3
-        MoveSpeed: 0
-        AttackSpeed: 1
-        MaxHealth: 20
-        Defence: 0
-        KnockBackResistance: 0
-        RegenerationRate: 0
-    chance: 1
-    amount: {x: 1, y: 1}
-  totalDrops: {x: 1, y: 1}
+  targetEnemy: {fileID: 0}
 --- !u!61 &3880586609151786162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -215,6 +195,44 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1910419939905677765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3880586609151786167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0786e43f733491e9e10bf68d1bbb7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItems: []
+  amountOfDroppedItemsRange: {x: 1, y: 2}
+  dropChances:
+  - chance: 0.1
+    levelRange: {x: 0, y: 1}
+    amountRange: {x: 1, y: 1}
+    item:
+      name: a
+      icon: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
+      description: o
+      itemType: 0
+      maxStackSize: 1
+      itemStatistics:
+        Level: 0
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+    itemType: 0
+    preset: 0
 --- !u!1001 &482562031794449780
 PrefabInstance:
   m_ObjectHideFlags: 0

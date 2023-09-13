@@ -1,30 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5087004178860687520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560893209370578529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d5e21c27b8b44cfbb064ba486b0582, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Innit:
-  - name: Health
-    slider: {fileID: 8890130216235454922}
-    value: 1
-  - name: Food
-    slider: {fileID: 1295478025048224895}
-    value: 1
-  - name: Mana
-    slider: {fileID: 1295478023473090281}
-    value: 1
-  - name: XP
-    slider: {fileID: 7722935007202953679}
-    value: 0
 --- !u!1 &2268773804147582580
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -826,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGlobal: 1
+  m_IsGlobal: 1
   priority: 3
   blendDistance: 0
   weight: 1
@@ -996,6 +972,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -2265,6 +2242,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1560893209370578529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 311626320773018306, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
+  m_PrefabInstance: {fileID: 1295478024431221923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5087004178860687520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560893209370578529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d5e21c27b8b44cfbb064ba486b0582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Innit:
+  - name: Health
+    slider: {fileID: 8890130216235454922}
+    NumberDisplay: {fileID: 5256038351483256511}
+    value: 1
+  - name: Food
+    slider: {fileID: 1295478025048224895}
+    NumberDisplay: {fileID: 0}
+    value: 1
+  - name: Mana
+    slider: {fileID: 1295478023473090281}
+    NumberDisplay: {fileID: 0}
+    value: 1
+  - name: XP
+    slider: {fileID: 7722935007202953679}
+    NumberDisplay: {fileID: 0}
+    value: 0
+--- !u!224 &1560893209370578541 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 311626320773018318, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
+  m_PrefabInstance: {fileID: 1295478024431221923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1560893210655643814 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 311626320062637061, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
+  m_PrefabInstance: {fileID: 1295478024431221923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5256038351483256511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6416298433764721180, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
+  m_PrefabInstance: {fileID: 1295478024431221923}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8890130216235454922 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7681557883055664489, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
@@ -2276,18 +2308,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1560893210655643814 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 311626320062637061, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
-  m_PrefabInstance: {fileID: 1295478024431221923}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1560893209370578541 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 311626320773018318, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
-  m_PrefabInstance: {fileID: 1295478024431221923}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1560893209370578529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 311626320773018306, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
-  m_PrefabInstance: {fileID: 1295478024431221923}
-  m_PrefabAsset: {fileID: 0}

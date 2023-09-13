@@ -36,6 +36,12 @@ namespace JQUI
             transform.localScale = Vector3.one * Random.Range(1.1f, 1.2f);
 
             isPointerOnButton = true;
+
+            if (InventoryController.instance.hoverSlot != this)
+            {
+                InventoryController.instance.hoverSlot = this;
+                InventoryController.instance.UpdateHoverSlotDisplay();
+            }
         }
 
         public override void OnPointerExit(PointerEventData eventData)
@@ -43,6 +49,11 @@ namespace JQUI
             base.OnPointerExit(eventData);
 
             isPointerOnButton = false;
+            if (InventoryController.instance.hoverSlot == this)
+            {
+                InventoryController.instance.hoverSlot = null;
+                InventoryController.instance.UpdateHoverSlotDisplay();
+            }
         }
 
         public override void OnPointerDown(PointerEventData eventData)

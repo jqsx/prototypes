@@ -19,6 +19,9 @@ public class BasicAI : Entity
 
     public Entity targetEnemy;
 
+    private float attackDelay = 0f;
+    private float CanAttackCheckDelay = 0f;
+
     private void Awake()
     {
         for(int y = -1; y <= 1; y++)
@@ -33,12 +36,44 @@ public class BasicAI : Entity
 
     private void Update()
     {
-        if (PlayerController.instance) target = PlayerController.instance.transform.position;
-        if (state == State.Chasing) Chasing();
+        //if (PlayerController.instance) target = PlayerController.instance.transform.position;
+
+        if (faction == Faction.Aggressive && !targetEnemy)
+        {
+            if (PlayerController.instance) targetEnemy = PlayerController.instance.GetComponent<Entity>();
+        }
+        if (state == State.Chasing)
+        {
+            Chasing();
+
+            if (attackDelay < Time.time && CanAttackCheckDelay < Time.time)
+            {
+                CanAttackCheckDelay = Time.time + Random.Range(0.1f, 0.25f);
+                Collider2D[] entities = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+                foreach (Collider2D entity in entities)
+                {
+                    Entity e = entity.GetComponent<Entity>();
+                    if (e && e == targetEnemy)
+                    {
+                        Attack(transform.position - e.transform.position, false);
+                        attackDelay = Time.time + 1.0f / getTotal().AttackSpeed;
+                    }
+                }
+            }
+        }
         else if (state == State.Wandering) Wandering();
 
+        if (targetEnemy) target = targetEnemy.transform.position;
+
         if (optimizedDistance(transform.position, target) > 100f) state = State.Wandering;
-        if (state != State.Chasing && !Physics2D.Linecast(transform.position, target, opaqueSolids) && optimizedDistance(transform.position, target) < 30f) state = State.Chasing;
+        if (targetEnemy && state != State.Chasing && !Physics2D.Linecast(transform.position, targetEnemy.transform.position, opaqueSolids) && optimizedDistance(transform.position, targetEnemy.transform.position) < 15f)
+        {
+            state = State.Chasing;
+        }
+        else if (optimizedDistance(transform.position, target) > 40f)
+        {
+            state = State.Wandering;
+        }
         animator.transform.rotation = Quaternion.Euler(0, 180f * (direction.x > 0 ? 0f : 1f), 0f);
     }
 

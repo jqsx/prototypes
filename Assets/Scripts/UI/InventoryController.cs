@@ -21,6 +21,9 @@ namespace JQUI
         public Sprite noitem;
         public Slot[] allSlots;
 
+        public Slot hoverSlot;
+        public TMPro.TMP_Text cursorText;
+
         public int selectedSlot = 0;
 
         private void Awake()
@@ -100,7 +103,25 @@ namespace JQUI
                 }
             }
 
+            cursorText.rectTransform.position = Input.mousePosition;
+
             UpdateInventoryInput();
+        }
+
+        public void UpdateHoverSlotDisplay()
+        {
+            if (hoverSlot == null) cursorText.text = "";
+            else
+            {
+                Inventory parent = hoverSlot.parent;
+                ItemStack aa = parent.slots[hoverSlot.slotNumber];
+
+                cursorText.text += aa.item.name + "\n";
+                cursorText.text += aa.item.itemType.ToString();
+                cursorText.text += aa.item.itemStatistics.toString();
+                cursorText.text += "-----\n";
+                cursorText.text += aa.item.description;
+            }
         }
 
         public void updateInventoryDisplay()
