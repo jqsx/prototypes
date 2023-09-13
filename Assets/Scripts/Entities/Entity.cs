@@ -8,9 +8,12 @@ public class Entity : MonoBehaviour
     public float Health = 20f;
     public Statistics EntityStatistics = new Statistics();
     public Statistics EquipmentStatistics = new Statistics();
+    public Statistics EffectStatistics = new Statistics();
 
     private float regenDelay = 0f;
     private float lastRegenTick = 0f;
+
+    public Faction faction = Faction.Passive;
 
     private void Update()
     {
@@ -125,16 +128,47 @@ public class Statistics
 {
     public int Level = 1;
     public float XP = 0f;
-    public float Damage = 1f;
+    public float Damage = 0f;
     public float CritDamage = 0f;
-    public float CritChance = 0.3f;
-    public float MoveSpeed = 3f;
-    public float AttackSpeed = 1f;
-    public float MaxHealth = 20f;
+    public float CritChance = 0f;
+    public float MoveSpeed = 0f;
+    public float AttackSpeed = 0f;
+    public float MaxHealth = 0f;
     public float Defence = 0f;
     public float KnockBackResistance = 0f;
     /// <summary>
     /// 0.5 * (1f - RegenerationRate) = Regen tick health basically
     /// </summary>
     public float RegenerationRate = 0f;
+
+    public void Add(Statistics other)
+    {
+        Damage += other.Damage;
+        CritDamage += other.CritDamage;
+        CritChance += other.CritChance;
+        MoveSpeed += other.MoveSpeed;
+        AttackSpeed += other.AttackSpeed;
+        MaxHealth += other.MaxHealth;
+        Defence += other.Defence;
+        KnockBackResistance += other.KnockBackResistance;
+        RegenerationRate += other.RegenerationRate;
+}
+
+    public void Remove(Statistics other)
+    {
+        Damage -= other.Damage;
+        CritDamage -= other.CritDamage;
+        CritChance -= other.CritChance;
+        MoveSpeed -= other.MoveSpeed;
+        AttackSpeed -= other.AttackSpeed;
+        MaxHealth -= other.MaxHealth;
+        Defence -= other.Defence;
+        KnockBackResistance -= other.KnockBackResistance;
+        RegenerationRate -= other.RegenerationRate;
+    }
+}
+
+public enum Faction
+{
+    Passive, Neutral, Aggressive
 }

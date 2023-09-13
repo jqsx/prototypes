@@ -17,6 +17,8 @@ public class BasicAI : Entity
 
     public State state = State.Wandering;
 
+    public Entity targetEnemy;
+
     private void Awake()
     {
         for(int y = -1; y <= 1; y++)

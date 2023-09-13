@@ -133,6 +133,11 @@ public class Item
 
     }
 
+    public virtual void onUse(Inventory inventory, int index)
+    {
+
+    }
+
     public Item(Sprite icon, string name, string desc, Statistics itemStatistics)
     {
         this.icon = icon;

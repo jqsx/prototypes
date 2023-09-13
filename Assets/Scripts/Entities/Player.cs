@@ -8,10 +8,13 @@ public class Player : Entity
     Rigidbody2D rb;
     float lastDirectionx = 1f;
 
-    public 
+    public static Player player;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        player = this;
     }
 
     void Update()
