@@ -15,7 +15,12 @@ public class Entity : MonoBehaviour
 
     public Faction faction = Faction.Passive;
 
-    private void Update()
+    void Update()
+    {
+        regenCycle();
+    }
+
+    public void regenCycle()
     {
         if (lastRegenTick < Time.time && regenDelay < Time.time)
         {

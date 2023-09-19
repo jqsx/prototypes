@@ -56,6 +56,7 @@ public class BasicAI : Entity
                     if (e && e == targetEnemy)
                     {
                         Attack(transform.position - e.transform.position, false);
+                        playAnimation("Stab");
                         attackDelay = Time.time + 1.0f / getTotal().AttackSpeed;
                     }
                 }
@@ -91,10 +92,15 @@ public class BasicAI : Entity
 
     void playAnimation(string name)
     {
-        if (!animator.GetCurrentAnimatorStateInfo(1).IsName(name) && !animator.GetCurrentAnimatorStateInfo(0).IsName(name))
+        if (!isPlayingAnimation(name))
         {
             animator.Play(name);
         }
+    }
+
+    bool isPlayingAnimation(string name)
+    {
+        return animator.GetCurrentAnimatorStateInfo(1).IsName(name) || animator.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
 
     private Vector2 CastPossibleLocations(Vector2 _target)
@@ -162,10 +168,19 @@ public class BasicAI : Entity
         return false;
     }
 
-    private void movement(Vector2 direction)
+    public virtual void EntityAnimations(Vector2 direction)
     {
-        if (direction.magnitude > 0.3f) playAnimation("WalkRight");
+        if (isPlayingAnimation("Stab") || isPlayingAnimation("SwingRight"))
+        {
+
+        }
+        else if (direction.magnitude > 0.3f) playAnimation("WalkRight");
         else playAnimation("idle");
+    }
+
+    public virtual void movement(Vector2 direction)
+    {
+        EntityAnimations(direction);
         rb.velocity = Vector2.Lerp(rb.velocity, direction * EntityStatistics.MoveSpeed, Time.deltaTime * 5f);
     }
 

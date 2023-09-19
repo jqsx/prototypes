@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using static ConsumableItem;
 
 namespace JQUI
 {
@@ -11,6 +13,7 @@ namespace JQUI
         public static InventoryController instance;
         public int size = 15;
         public static Inventory inventory;
+        public static Inventory armor;
         Animator animator;
         bool isOpen = false;
         public Transform hotbarSlotParent;
@@ -34,6 +37,7 @@ namespace JQUI
             if (inventory == null)
             {
                 inventory = new Inventory(size);
+                armor = new Inventory(5);
             }
             generateInventory();
         }
@@ -97,15 +101,29 @@ namespace JQUI
                 if (isOpen) animator.Play("Close");
                 else animator.Play("Open");
                 isOpen = !isOpen;
-                if (!isOpen)
-                {
-                    
-                }
             }
-
             cursorText.rectTransform.position = Input.mousePosition;
 
             UpdateInventoryInput();
+            InputControl();
+        }
+
+        public void InputControl()
+        {
+            if (isOpen && hoverSlot != null)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    ItemStack _item = hoverSlot.parent.slots[hoverSlot.slotNumber];
+                    if (_item == null) return;
+                    if (!(_item.item is ConsumableItem)) return;
+                    ConsumableItem consumable = (ConsumableItem)_item.item;
+
+                    consumable.onUse(hoverSlot.parent, hoverSlot.slotNumber);
+                    updateInventoryDisplay();
+                    UpdateHoverSlotDisplay();
+                }
+            }
         }
 
         public void UpdateHoverSlotDisplay()
@@ -115,12 +133,15 @@ namespace JQUI
             {
                 Inventory parent = hoverSlot.parent;
                 ItemStack aa = parent.slots[hoverSlot.slotNumber];
-
-                cursorText.text += aa.item.name + "\n";
-                cursorText.text += aa.item.itemType.ToString();
-                cursorText.text += aa.item.itemStatistics.toString();
-                cursorText.text += "-----\n";
-                cursorText.text += aa.item.description;
+                if (aa != null)
+                {
+                    cursorText.text += (aa.item is ConsumableItem) + "\n";
+                    cursorText.text += aa.item.name + "\n";
+                    cursorText.text += aa.item.itemType.ToString();
+                    cursorText.text += aa.item.itemStatistics.toString();
+                    cursorText.text += "-----\n";
+                    cursorText.text += aa.item.description;
+                }
             }
         }
 
@@ -159,6 +180,18 @@ namespace JQUI
             {
                 currentlySelected = self.slotNumber;
             }
+        }
+
+        public static void ActivateEffect(TempraryEffects effect)
+        {
+            instance.StartCoroutine(instance.activateEffect(effect));
+        }
+
+        IEnumerator activateEffect(TempraryEffects effect)
+        {
+            Player.player.EffectStatistics.Add(effect.effectStatistics);
+            yield return new WaitForSeconds(effect.Time);
+            Player.player.EffectStatistics.Remove(effect.effectStatistics);
         }
     }
 }

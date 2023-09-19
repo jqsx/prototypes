@@ -19,6 +19,7 @@ public class Player : Entity
 
     void Update()
     {
+        regenCycle();
         StatisticsDisplay.instance.setTrackerValue("Health", Health, getTotal().MaxHealth);
 
         Vector2 moveDirection = new Vector2(Mathf.Clamp(Mathf.Round(rb.velocity.x / 3f), -1f, 1f), Input.GetAxisRaw("Vertical"));

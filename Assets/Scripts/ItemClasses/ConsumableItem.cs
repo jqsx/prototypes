@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
+[System.Serializable]
 public class ConsumableItem : Item
 {
 
@@ -15,7 +17,7 @@ public class ConsumableItem : Item
     {
         base.onUse(inventory, index);
 
-        if (inventory.slots[index].amount < 0)
+        if (inventory.slots[index].amount <= 0)
         {
             inventory.slots[index] = null;
             return;
@@ -24,9 +26,16 @@ public class ConsumableItem : Item
         {
             inventory.slots[index].amount--;
 
+            Player.player.Health = Mathf.Clamp(Player.player.Health + Heal, 0, Player.player.getTotal().MaxHealth);
+
             foreach (TempraryEffects effect in consumptionEffects)
             {
-                
+                JQUI.InventoryController.ActivateEffect(effect);
+            }
+
+            if (inventory.slots[index].amount <= 0)
+            {
+                inventory.slots[index] = null;
             }
         }
     }
@@ -37,12 +46,5 @@ public class ConsumableItem : Item
         public float Time;
 
         public Statistics effectStatistics;
-    }
-
-    IEnumerator activateEffect(TempraryEffects effect)
-    {
-        Player.player.EffectStatistics.Add(effect.effectStatistics);
-        yield return new WaitForSeconds(effect.Time);
-        Player.player.EffectStatistics.Remove(effect.effectStatistics);
     }
 }

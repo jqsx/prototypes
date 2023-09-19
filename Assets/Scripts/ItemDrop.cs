@@ -31,9 +31,14 @@ public class ItemDrop : MonoBehaviour
         Player player = collision.transform.GetComponent<Player>();
         if (player)
         {
-            itemStack = JQUI.InventoryController.inventory.addItemToInventory(itemStack);
+            itemStack = JQUI.InventoryController.inventory.addItemToInventory(getStoredDrop());
             JQUI.InventoryController.updateDisplay();
             if (itemStack == null) Destroy(gameObject);
         }
+    }
+
+    public virtual ItemStack getStoredDrop()
+    {
+        return itemStack;
     }
 }

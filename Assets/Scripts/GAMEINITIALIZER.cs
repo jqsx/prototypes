@@ -6,7 +6,15 @@ public class GAMEINITIALIZER : MonoBehaviour
 {
     static GAMEINITIALIZER instance;
     private static List<Item> InitializedItems;
-    public List<Item> registeredItems = new List<Item>();
+    public ItemRegistry itemRegistry = new ItemRegistry();
+
+    [System.Serializable]
+    public class ItemRegistry
+    {
+        public List<Item> registeredItems = new List<Item>();
+        public List<ConsumableItem> registeredConsumableItems = new List<ConsumableItem>();
+        public List<WeaponItem> registeredWeaponItems = new List<WeaponItem>();
+    }
 
     [Header("Global Prefabs")]
     public ItemDrop itmdrop;
@@ -38,7 +46,11 @@ public class GAMEINITIALIZER : MonoBehaviour
         instance = this;
         if (InitializedItems == null)
         {
-            InitializedItems = registeredItems;
+            List<Item> items = new List<Item>();
+            items.InsertRange(0, itemRegistry.registeredItems);
+            items.InsertRange(0, itemRegistry.registeredConsumableItems);
+            items.InsertRange(0, itemRegistry.registeredWeaponItems);
+            InitializedItems = items;
         }
 
         prefab_ItemDrop = itmdrop;
