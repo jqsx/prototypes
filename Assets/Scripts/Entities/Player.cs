@@ -10,11 +10,12 @@ public class Player : Entity
 
     public static Player player;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
 
         player = this;
+        setTool(JQUI.InventoryController.inventory.slots[JQUI.InventoryController.instance.selectedSlot]);
     }
 
     void Update()
@@ -77,5 +78,6 @@ public class Player : Entity
         base.onDamage(e);
 
         rb.AddForce(500f * (1f - EntityStatistics.KnockBackResistance - EquipmentStatistics.KnockBackResistance) * (transform.position - e.from.transform.position).normalized);
+        PlayerController.CameraShake(5f);
     }
 }

@@ -66,7 +66,20 @@ public class GAMEINITIALIZER : MonoBehaviour
 
     public void debug()
     {
-        SpawnItem(0, 1, Vector2.zero);
+        ItemDrop drop = SpawnItem(0, 1, Vector2.zero);
+        Sprite a = drop.itemStack.item.icon;
+
+        Statistics weaponStats = new Statistics();
+        weaponStats.Level = 34;
+        weaponStats.Damage = 35.2f;
+        WeaponItem i = new WeaponItem();
+        i.itemStatistics = weaponStats;
+        i.icon = a;
+        i.name = "aAAA";
+        i.description = "aaa";
+        i.itemType = Item.ItemType.Weapon;
+
+        SpawnItem(new ItemStack(i, 1), Vector2.zero);
     }
 
     public static int InitializeItem(Item item)

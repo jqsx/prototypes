@@ -9,6 +9,9 @@ public class Entity : MonoBehaviour
     public Statistics EntityStatistics = new Statistics();
     public Statistics EquipmentStatistics = new Statistics();
     public Statistics EffectStatistics = new Statistics();
+    public GameObject HandPivot;
+    [HideInInspector]
+    public GameObject currentlySelectedVisual;
 
     private float regenDelay = 0f;
     private float lastRegenTick = 0f;
@@ -136,6 +139,26 @@ public class Entity : MonoBehaviour
         stats.Add(EffectStatistics);
 
         return stats;
+    }
+
+    public void setTool(ItemStack itemStack)
+    {
+        if (currentlySelectedVisual != null)
+            Destroy(currentlySelectedVisual);
+        if (itemStack == null) return;
+        GameObject tool = new GameObject();
+        tool.transform.parent = HandPivot.transform;
+        tool.transform.localPosition = Vector3.zero;
+        tool.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        tool.AddComponent<SpriteRenderer>().sprite = itemStack.item.icon;
+        
+        if (itemStack.item is ToolItem)
+        {
+            ToolItem toolitem = (ToolItem)itemStack.item;
+            tool.transform.localPosition = toolitem.handleOffset;
+        }
+
+        currentlySelectedVisual = tool;
     }
 }
 

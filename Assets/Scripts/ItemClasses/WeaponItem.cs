@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class WeaponItem : Item
+public class WeaponItem : ToolItem
 {
-
+    
 }

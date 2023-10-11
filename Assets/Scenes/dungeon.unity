@@ -211,6 +211,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1343962789, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1295478024379474519, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -227,6 +231,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1560893209828258556, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
+      propertyPath: m_text
+      value: 'FPS: 100'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560893209828258556, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c0173f6613c3b400f80d1e938fdaa30c, type: 2}
+    - target: {fileID: 1560893209828258556, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8665529550005764660, guid: c0173f6613c3b400f80d1e938fdaa30c, type: 2}
     - target: {fileID: 1648790133040899920, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

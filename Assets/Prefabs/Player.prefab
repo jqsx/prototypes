@@ -151,6 +151,7 @@ MonoBehaviour:
   PlayerAcceleration: 7
   speedCap: 5
   canMove: 1
+  cameraShake: 0
 --- !u!114 &8539958677164663174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +201,7 @@ MonoBehaviour:
     Defence: 0
     KnockBackResistance: 0
     RegenerationRate: 0
+  HandPivot: {fileID: 7259176024349701544}
   faction: 0
   animator: {fileID: 4355763153713545640}
 --- !u!1001 &1233827328235662569
@@ -275,5 +277,10 @@ Animator:
 --- !u!4 &4453667415514374817 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3229632337986752072, guid: 74a8c54cf0c3741868668f7f9ff445c3, type: 3}
+  m_PrefabInstance: {fileID: 1233827328235662569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7259176024349701544 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8476523579004066113, guid: 74a8c54cf0c3741868668f7f9ff445c3, type: 3}
   m_PrefabInstance: {fileID: 1233827328235662569}
   m_PrefabAsset: {fileID: 0}

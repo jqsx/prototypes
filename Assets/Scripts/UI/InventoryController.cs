@@ -66,16 +66,22 @@ namespace JQUI
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                selectedSlot = 0;
+                selectTool(0);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                selectedSlot = 1;
+                selectTool(1);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                selectedSlot = 2;
+                selectTool(2);
             }
+        }
+
+        void selectTool(int i)
+        {
+            selectedSlot = Mathf.Clamp(i, 0, 2);
+            Player.player.setTool(inventory.slots[selectedSlot]);
         }
 
         Slot generateNewSlotObject(int i)
@@ -128,15 +134,21 @@ namespace JQUI
 
         public void UpdateHoverSlotDisplay()
         {
-            if (hoverSlot == null) cursorText.text = "";
-            else
+            cursorText.text = "";
+            if (hoverSlot != null)
             {
                 Inventory parent = hoverSlot.parent;
                 ItemStack aa = parent.slots[hoverSlot.slotNumber];
                 if (aa != null)
                 {
-                    cursorText.text += (aa.item is ConsumableItem) + "\n";
-                    cursorText.text += aa.item.name + "\n";
+                    string color = "white";
+                    int level = aa.item.itemStatistics.Level;
+                    if (level < 10) color = "yellow";
+                    else if (level < 20) color = "green";
+                    else if (level < 30) color = "blue";
+                    else if (level < 40) color = "purple";
+                    else color = "red";
+                    cursorText.text += "<color=" + color + ">[" + level + "]</color><bold>" + aa.item.name + "</bold>\n";
                     cursorText.text += aa.item.itemType.ToString();
                     cursorText.text += aa.item.itemStatistics.toString();
                     cursorText.text += "-----\n";
@@ -180,6 +192,7 @@ namespace JQUI
             {
                 currentlySelected = self.slotNumber;
             }
+            Player.player.setTool(inventory.slots[selectedSlot]);
         }
 
         public static void ActivateEffect(TempraryEffects effect)

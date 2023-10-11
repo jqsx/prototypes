@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public static Vector2 mouseWorldPosition = Vector2.zero;
 
     public bool canMove = true;
+    public float cameraShake = 0f;
 
     void Awake()
     {
@@ -27,13 +28,17 @@ public class PlayerController : MonoBehaviour
     {
         if (!instance) instance = this;
 
+        cameraShake = Mathf.Lerp(cameraShake, 0f, Time.deltaTime * 5f);
+
         moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         //if (moveDirection.magnitude != 0) rb.velocity += Mathf.Clamp(PlayerAcceleration - rb.velocity.magnitude, 0, speedCap) * Time.deltaTime * moveDirection;
         //else rb.velocity *= 1 - Time.deltaTime * 10f;
         movement();
 
-        Cam.position = transform.position + new Vector3(0, 0, -10f);
+        Cam.position = transform.position + new Vector3(0, Mathf.Sin(Time.time * 20f) * Mathf.Clamp(cameraShake, -1f, 1f) / 10f, -10f);
+        Cam.rotation = Quaternion.Euler(0, 0, cameraShake);
+
         updateMousePosition();
     }
     private void movement()
@@ -47,5 +52,12 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        
+    }
+
+    public static void CameraShake(float force = 1f)
+    {
+        float shake = instance.cameraShake;
+        instance.cameraShake = -(shake + Mathf.Abs(force) * Mathf.Sign(shake));
     }
 }
