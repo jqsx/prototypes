@@ -21,8 +21,9 @@ public class EntityDrops : MonoBehaviour
         int count = Random.Range(amountOfDroppedItemsRange.x, amountOfDroppedItemsRange.y);
         for (int i = 0; i < count; i++)
         {
-            DropChance dropChance = dropChances[Random.Range(0, dropChances.Length)];
-            droppedItems.Add(dropChance.getItem());
+            DropChance dropChance = dropChances[Random.Range(0, dropChances.Length - 1)];
+            ItemStack itemstack = dropChance.getItem();
+            if (itemstack != null) droppedItems.Add(itemstack);
         }
     }
 }
@@ -84,17 +85,16 @@ public class DropChance
 
             float attackSpeed = Random.Range(0f, 2f) + 1;
 
-            Item weapon = new Item().setName("Weapon").setDesc("Bing description bing");
+            Item weapon = new WeaponItem().setName("Weapon Name").setDesc("Bing description bing");
 
             weapon.itemType = Item.ItemType.Weapon;
             weapon.itemStatistics.Damage = damage;
             weapon.itemStatistics.AttackSpeed = attackSpeed;
             weapon.maxStackSize = 1;
 
-            float index = (attackSpeed - 1) / 2;
+            float index = attackSpeed / 3f;
 
-            SpriteStorage.RegisterSprite data = SpriteStorage.instance.Weapons[(int)Mathf.Round(index) * SpriteStorage.instance.Weapons.Length];
-            Debug.Log(SpriteStorage.instance.Weapons.Length);
+            SpriteStorage.RegisterSprite data = SpriteStorage.instance.Weapons[(int)Mathf.Round(index) * (SpriteStorage.instance.Weapons.Length - 1)];
             weapon.setIcon(data.sprite);
             return new ItemStack(weapon, amount);
         }

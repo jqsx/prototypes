@@ -69,6 +69,7 @@ public class Entity : MonoBehaviour
         {
             //_droppedItems = drops.executeItemDrop();
             drops.onDeath();
+            _droppedItems = drops.droppedItems.ToArray();
         }
 
         EntityDeathEvent e = new EntityDeathEvent(de.amount, de.from, de.damageCause, _droppedItems);
@@ -76,15 +77,7 @@ public class Entity : MonoBehaviour
         onDeath(e);
         if (e.isCancelled()) return;
 
-        /*for(int i = 0; i < 5; i++)
-        {
-            if (Random.Range(0f, 1f) > 0.2f * i)
-            {
-                GAMEINITIALIZER.SpawnItem(2, transform.position).GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            }
-        }*/
-
-        foreach(ItemStack itemstack in e.droppedItems)
+        foreach(ItemStack itemstack in _droppedItems)
         {
             GAMEINITIALIZER.SpawnItem(itemstack, transform.position).GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         }

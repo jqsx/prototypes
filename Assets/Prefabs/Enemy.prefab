@@ -28,6 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3880586609151786167}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.04, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,7 +36,6 @@ Transform:
   m_Children:
   - {fileID: 3054445623188284220}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3880586609151786164
 SpriteRenderer:
@@ -106,6 +106,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -160,6 +166,7 @@ MonoBehaviour:
     KnockBackResistance: 0
     RegenerationRate: 0
   HandPivot: {fileID: 8291354326869242933}
+  currentlySelectedVisual: {fileID: 0}
   faction: 2
   avoid:
     serializedVersion: 2
@@ -180,6 +187,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -211,12 +237,12 @@ MonoBehaviour:
   droppedItems: []
   amountOfDroppedItemsRange: {x: 1, y: 2}
   dropChances:
-  - chance: 0.1
-    levelRange: {x: 0, y: 1}
+  - chance: 1
+    levelRange: {x: 1, y: 50}
     amountRange: {x: 1, y: 1}
     item:
       name: a
-      icon: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
+      icon: {fileID: 21300000, guid: dcdc43f7a0ad67b4ab3e3db38233dfae, type: 3}
       description: o
       itemType: 0
       maxStackSize: 1
@@ -239,6 +265,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 3880586609151786165}
     m_Modifications:
     - target: {fileID: 3229632337986752072, guid: 74a8c54cf0c3741868668f7f9ff445c3, type: 3}
@@ -290,6 +317,9 @@ PrefabInstance:
       value: NPC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74a8c54cf0c3741868668f7f9ff445c3, type: 3}
 --- !u!4 &3054445623188284220 stripped
 Transform:

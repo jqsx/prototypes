@@ -163,6 +163,11 @@ public class Item
 
     }
 
+    public Item(Item item) : this(item.icon, item.name, item.description, item.itemStatistics)
+    {
+
+    }
+
     public Item(Sprite icon, string name, string desc, Statistics itemStatistics)
     {
         this.icon = icon;
