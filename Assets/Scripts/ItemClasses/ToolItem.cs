@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class ToolItem : Item
 {
-    public Vector2 handleOffset = Vector2.zero;
+    public Vector2 handleOffset;
+
+    public void setHandleOffset(Vector2 handleOffset)
+    {
+        this.handleOffset = handleOffset;
+    }
 }

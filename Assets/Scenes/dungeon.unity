@@ -168,22 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e30ec69542a248968e19ec786ff45fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rooms:
-  - {fileID: 7270171511280956233, guid: 8d10d039920d1450c90d1ad893406afa, type: 3}
-  - {fileID: 7270171511280956233, guid: 8d10d039920d1450c90d1ad893406afa, type: 3}
-  - {fileID: 7270171511280956233, guid: 8d10d039920d1450c90d1ad893406afa, type: 3}
-  - {fileID: 8440465396966903714, guid: 533020f6acaac41b39a302d7f4c10a81, type: 3}
-  - {fileID: 8440465396966903714, guid: 533020f6acaac41b39a302d7f4c10a81, type: 3}
-  - {fileID: 8440465396966903714, guid: 533020f6acaac41b39a302d7f4c10a81, type: 3}
-  - {fileID: 1717112355733195464, guid: 22cd49db487f94f54913891abe77fc0e, type: 3}
-  - {fileID: 792591517472183599, guid: ca70ed4fd252749f68d43804664e4f6a, type: 3}
-  - {fileID: 1717112355733195464, guid: 22cd49db487f94f54913891abe77fc0e, type: 3}
-  - {fileID: 792591517472183599, guid: ca70ed4fd252749f68d43804664e4f6a, type: 3}
-  - {fileID: 8303240745298831382, guid: 3044acbb09768495f859e1ac8aeb6e13, type: 3}
-  - {fileID: 4797716746742573458, guid: f51e1e4bc5c05424994ed130fe087e76, type: 3}
-  - {fileID: 6094278841950938517, guid: 0cd0164129c194cdf986bd97650147cb, type: 3}
-  - {fileID: 6094278841950938517, guid: 0cd0164129c194cdf986bd97650147cb, type: 3}
-  - {fileID: 7317522140424734584, guid: 0b7a2fea30bad7743a0f9dc488294a64, type: 3}
+  group: {fileID: 11400000, guid: 6bd98b21f8b49a449b1aa9bf69bc13f7, type: 2}
   RoomLimit: 100
   RoomCount: 0
   seed: {x: 0, y: 0}
@@ -212,10 +197,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1343962789, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1295478024379474519, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -232,28 +213,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1560893209828258556, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
-      propertyPath: m_text
-      value: 'FPS: 100'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1560893209828258556, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: c0173f6613c3b400f80d1e938fdaa30c, type: 2}
-    - target: {fileID: 1560893209828258556, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 8665529550005764660, guid: c0173f6613c3b400f80d1e938fdaa30c, type: 2}
     - target: {fileID: 1648790133040899920, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1648790133040899920, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479136674919739294, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4479136674919739294, guid: ac8e6ca54aff9421f8d037c8244f3784, type: 3}

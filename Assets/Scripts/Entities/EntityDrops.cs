@@ -38,6 +38,9 @@ public class DropChance
     public Item item;
     public Item.ItemType itemType;
 
+    public bool isID = false;
+    public int id = 0;
+
     public bool preset = false;
 
     public DropChance(float chance, Vector2Int levelRange, Item item)
@@ -60,7 +63,12 @@ public class DropChance
 
     public ItemStack getItem()
     {
-        if (!preset)
+        if (isID)
+        {
+            int amount = Random.Range(amountRange.x, amountRange.y);
+            return new ItemStack(GAMEINITIALIZER.getItem(id), amount);
+        }
+        else if (!preset)
         {
             if (itemType == Item.ItemType.Weapon) return getRandomWeapon();
         }
@@ -79,24 +87,26 @@ public class DropChance
         if (Random.Range(0f, 1f) < chance)
         {
             int level = Random.Range(levelRange.x, levelRange.y);
-            int amount = Random.Range(amountRange.x, amountRange.y);
 
             float damage = level * 2 + 1;
 
-            float attackSpeed = Random.Range(0f, 2f) + 1;
+            float attackSpeed = Random.Range(0f, 3f) - 1f;
 
-            Item weapon = new WeaponItem().setName("Weapon Name").setDesc("Bing description bing");
+            WeaponItem weapon = new WeaponItem();
 
             weapon.itemType = Item.ItemType.Weapon;
             weapon.itemStatistics.Damage = damage;
             weapon.itemStatistics.AttackSpeed = attackSpeed;
+            weapon.itemStatistics.Level = level;
             weapon.maxStackSize = 1;
 
-            float index = attackSpeed / 3f;
+            float index = 1f - (attackSpeed + 1f) / 3f;
 
-            SpriteStorage.RegisterSprite data = SpriteStorage.instance.Weapons[(int)Mathf.Round(index) * (SpriteStorage.instance.Weapons.Length - 1)];
+            SpriteStorage.RegisterSprite data = SpriteStorage.instance.Weapons[(int)Mathf.Round(index * (SpriteStorage.instance.Weapons.Length - 1))];
+            weapon.setName(GAMEINITIALIZER.instance.swordAttributes.getRandomAttribute() + " " + data.name).setDesc("Bing description bing");
+            weapon.setHandleOffset(data.handOffset);
             weapon.setIcon(data.sprite);
-            return new ItemStack(weapon, amount);
+            return new ItemStack(weapon, 1);
         }
 
         return null;

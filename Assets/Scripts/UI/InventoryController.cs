@@ -89,11 +89,11 @@ namespace JQUI
             GameObject slt = Instantiate(prefab_slot);
             if (i < 3)
             {
-                slt.transform.parent = hotbarSlotParent;
+                slt.transform.SetParent(hotbarSlotParent);
             }
             else
             {
-                slt.transform.parent = visualSlotParent;
+                slt.transform.SetParent(visualSlotParent);
             }
             return slt.GetComponent<Slot>();
         }
@@ -116,7 +116,7 @@ namespace JQUI
 
         public void InputControl()
         {
-            if (isOpen && hoverSlot != null)
+            if (hoverSlot != null)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -148,11 +148,11 @@ namespace JQUI
                     else if (level < 30) color = "blue";
                     else if (level < 40) color = "purple";
                     else color = "red";
-                    cursorText.text += "<color=" + color + ">[" + level + "]</color><bold>" + aa.item.name + "</bold>\n";
-                    cursorText.text += aa.item.itemType.ToString();
+                    cursorText.text += "<color=" + color + ">[" + level + "]<b>" + aa.item.name + "</b></color>\n";
+                    cursorText.text += "<color=#666666><i>" + aa.item.itemType + "</i></color>";
                     cursorText.text += aa.item.itemStatistics.toString();
-                    cursorText.text += "-----\n";
-                    cursorText.text += aa.item.description;
+                    cursorText.text += "\n";
+                    cursorText.text += "<color=#999999>" + aa.item.description + "</color>";
                 }
             }
         }
@@ -172,6 +172,7 @@ namespace JQUI
                 allSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = icon;
                 allSlots[i].transform.GetChild(1).GetComponent<TMPro.TMP_Text>().text = amount;
             }
+            UpdateHoverSlotDisplay();
         }
 
         public static void updateDisplay()

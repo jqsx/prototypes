@@ -32,6 +32,13 @@ public class BasicAI : Entity
             }
         }
         rb = GetComponent<Rigidbody2D>();
+
+        EntityAwake();
+    }
+
+    public virtual void EntityAwake()
+    {
+
     }
 
     private void Update()
@@ -53,7 +60,7 @@ public class BasicAI : Entity
                 foreach (Collider2D entity in entities)
                 {
                     Entity e = entity.GetComponent<Entity>();
-                    if (e && e == targetEnemy)
+                    if (e != null && e == targetEnemy)
                     {
                         Attack(transform.position - e.transform.position, false);
                         playAnimation("Stab");
@@ -75,7 +82,7 @@ public class BasicAI : Entity
         {
             state = State.Wandering;
         }
-        animator.transform.rotation = Quaternion.Euler(0, 180f * (direction.x > 0 ? 0f : 1f), 0f);
+        if (animator) animator.transform.rotation = Quaternion.Euler(0, 180f * (direction.x > 0 ? 0f : 1f), 0f);
     }
 
     private void Wandering()
@@ -170,6 +177,7 @@ public class BasicAI : Entity
 
     public virtual void EntityAnimations(Vector2 direction)
     {
+        if (animator == null) return;
         if (isPlayingAnimation("Stab") || isPlayingAnimation("SwingRight"))
         {
 

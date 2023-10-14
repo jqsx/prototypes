@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class roomGenerator : MonoBehaviour
 {
-    public List<Room> Rooms = new List<Room>();
+    public static bool setGroup = false;
+    public static RoomGroups setRoomGroup;
+    public RoomGroups group;
+    List<Room> Rooms;
     public int RoomLimit = 10;
     public int RoomCount = 0;
     
@@ -24,13 +27,18 @@ public class roomGenerator : MonoBehaviour
 
     void Awake()
     {
+        Rooms = group.Rooms;
+        if (setGroup) Rooms = setRoomGroup.Rooms;
         map = GetComponent<MiniMap>();
         isClosing = false;
         GEN = this;
 
-        seed = GAMEINITIALIZER.globalSeed + overworldDungeonPos;
+        
+    }
 
-        generateRoom(null);
+    public void updateSeed()
+    {
+        seed = GAMEINITIALIZER.globalSeed + overworldDungeonPos;
     }
 
     private void Update()

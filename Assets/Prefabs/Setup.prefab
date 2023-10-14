@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cd47767bbc9df48eb9df943c58610ed3, type: 2}
   m_sharedMaterial: {fileID: -8980036429576265671, guid: cd47767bbc9df48eb9df943c58610ed3, type: 2}
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
+  m_fontSize: 9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 3
-  m_fontSizeMax: 15
+  m_fontSizeMax: 9
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -904,7 +904,7 @@ MonoBehaviour:
   fov: 360
   rayCount: 100
   viewDistance: 10
-  updateRate: 20
+  updateRate: 40
   layerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -1317,7 +1317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4479136676770562454
 Transform:
   m_ObjectHideFlags: 0
@@ -1328,7 +1328,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 50, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4479136675551215383}
@@ -1430,7 +1430,128 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemRegistry:
-    registeredItems: []
+    registeredItems:
+    - name: Book
+      icon: {fileID: 1932919540, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: Just an old book
+      itemType: 3
+      maxStackSize: 15
+      itemStatistics:
+        Level: 1
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+    - name: Golden Statue
+      icon: {fileID: -1927004159, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: A very shiny statue
+      itemType: 3
+      maxStackSize: 5
+      itemStatistics:
+        Level: 15
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+    - name: Gunpowder
+      icon: {fileID: -697980555, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: Explosive material
+      itemType: 3
+      maxStackSize: 30
+      itemStatistics:
+        Level: 20
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+    - name: Rune
+      icon: {fileID: 1386617657, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: An old tablet
+      itemType: 3
+      maxStackSize: 3
+      itemStatistics:
+        Level: 5
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+    - name: A stick
+      icon: {fileID: -655277224, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: Just a stick... I'm not kidding it's just a stick!
+      itemType: 3
+      maxStackSize: 69
+      itemStatistics:
+        Level: 9999
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+    - name: Rock
+      icon: {fileID: 237796174, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: 'Adding this one to the rock collection!
+
+        +1 cool rock!'
+      itemType: 3
+      maxStackSize: 30
+      itemStatistics:
+        Level: 2
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+    - name: Sack of coins
+      icon: {fileID: -1017828461, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: Big money right there bucko
+      itemType: 3
+      maxStackSize: 5
+      itemStatistics:
+        Level: 10
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
     registeredConsumableItems:
     - name: Apple
       icon: {fileID: 219665895, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
@@ -1438,7 +1559,7 @@ MonoBehaviour:
       itemType: 1
       maxStackSize: 30
       itemStatistics:
-        Level: 0
+        Level: 5
         XP: 0
         Damage: 0
         CritDamage: 0
@@ -1465,6 +1586,92 @@ MonoBehaviour:
           Defence: 0
           KnockBackResistance: 0
           RegenerationRate: 0
+    - name: Banana
+      icon: {fileID: 6482958, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: It's a banana!
+      itemType: 1
+      maxStackSize: 30
+      itemStatistics:
+        Level: 5
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+      Feed: 4
+      Heal: 2
+      consumptionEffects: []
+    - name: Beannsss
+      icon: {fileID: 897870707, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: SOME GOOD BEANSS
+      itemType: 1
+      maxStackSize: 8
+      itemStatistics:
+        Level: 10
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+      Feed: 6
+      Heal: 6
+      consumptionEffects:
+      - Time: 7
+        effectStatistics:
+          Level: 0
+          XP: 0
+          Damage: 0
+          CritDamage: 0
+          CritChance: 0
+          MoveSpeed: 0
+          AttackSpeed: 0
+          MaxHealth: 0
+          Defence: 6
+          KnockBackResistance: 0
+          RegenerationRate: 0
+    - name: Melon!
+      icon: {fileID: -1448313042, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: MELON OVER HERE!
+      itemType: 1
+      maxStackSize: 9
+      itemStatistics:
+        Level: 50
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+      Feed: 15
+      Heal: 15
+      consumptionEffects:
+      - Time: 7
+        effectStatistics:
+          Level: 0
+          XP: 0
+          Damage: 3
+          CritDamage: 0
+          CritChance: 0
+          MoveSpeed: 0
+          AttackSpeed: 0
+          MaxHealth: 9
+          Defence: 15
+          KnockBackResistance: 0
+          RegenerationRate: 0.3
     registeredWeaponItems: []
   itmdrop: {fileID: 6146446566919566925, guid: a7f9d02338ac1ca4ea9b9d10c7307f66, type: 3}
   dmgind: {fileID: 494537516547425105, guid: ada96042b041246a6a85b6b36340b7f2, type: 3}
@@ -1472,14 +1679,41 @@ MonoBehaviour:
   bloodSplatter: {fileID: 2917705065575279996, guid: 66d5783eb08165f4097bf9a849c9089d, type: 3}
   spriteStorage:
     Weapons:
-    - name: Spear
-      sprite: {fileID: 2077247480, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
-    - name: Sword
-      sprite: {fileID: -1234154617, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
     - name: Dagger
+      displayName: Dagger
       sprite: {fileID: 1116480953, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      handOffset: {x: 0.1, y: 0}
+    - name: Dagger1
+      displayName: Dagger
+      sprite: {fileID: -1064516083, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      handOffset: {x: 0, y: 0}
+    - name: Dagger2
+      displayName: Dagger
+      sprite: {fileID: 1731345801, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      handOffset: {x: 0, y: 0}
+    - name: Katana
+      displayName: Katana
+      sprite: {fileID: -1055980278, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      handOffset: {x: 0.2, y: 0}
+    - name: Sword
+      displayName: Sword
+      sprite: {fileID: -1234154617, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      handOffset: {x: 0.2, y: 0}
+    - name: Sword1
+      displayName: Sword
+      sprite: {fileID: -1234154617, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      handOffset: {x: 0, y: 0}
+    - name: Mace
+      displayName: Mace
+      sprite: {fileID: -1851793331, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      handOffset: {x: 0.2, y: 0}
+    - name: Spear
+      displayName: Spear
+      sprite: {fileID: 2077247480, guid: 23037a2cdc676a74fbcb53616b638718, type: 3}
+      handOffset: {x: 0, y: 0}
     Armor: []
   autoSpawnPlayer: 0
+  swordAttributes: {fileID: 11400000, guid: c725bda5d432b3e43b4d26baa7634660, type: 2}
 --- !u!1 &5399317507708491387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,6 +2459,14 @@ PrefabInstance:
       value: -42
       objectReference: {fileID: 0}
     - target: {fileID: 311626321382723167, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
+      propertyPath: m_text
+      value: 'FPS: 100'
+      objectReference: {fileID: 0}
+    - target: {fileID: 311626321382723167, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c0173f6613c3b400f80d1e938fdaa30c, type: 2}
+    - target: {fileID: 311626321382723167, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -2236,6 +2478,10 @@ PrefabInstance:
       propertyPath: m_fontColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 311626321382723167, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8665529550005764660, guid: c0173f6613c3b400f80d1e938fdaa30c, type: 2}
     - target: {fileID: 311626321382723167, guid: f93e1a278f314db449010315f52fbfc0, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295

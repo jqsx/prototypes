@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class GAMEINITIALIZER : MonoBehaviour
 {
-    static GAMEINITIALIZER instance;
+    public static int globalGameLevel = 1;
+
+    public static GAMEINITIALIZER instance;
     private static List<Item> InitializedItems;
     public ItemRegistry itemRegistry = new ItemRegistry();
 
@@ -33,10 +36,17 @@ public class GAMEINITIALIZER : MonoBehaviour
     [HideInInspector]
     public static Vector2 globalSeed;
 
+    public SwordConfig swordAttributes;
+
     private void Start()
     {
         globalSeed = new Vector2(Random.Range(-1000f, 1000f), Random.Range(-1000f, 1000f));
 
+        if (roomGenerator.GEN != null)
+        {
+            roomGenerator.GEN.updateSeed();
+            roomGenerator.GEN.generateRoom(null);
+        }
     }
 
     private void Awake()
@@ -95,7 +105,8 @@ public class GAMEINITIALIZER : MonoBehaviour
             return InitializedItems[id];
         } catch
         {
-            throw new System.Exception("INVALID ITEM ID PROVIDED, COULDN'T RETRIEVE ITEM!");
+            Debug.Log(new System.Exception("INVALID ITEM ID PROVIDED, COULDN'T RETRIEVE ITEM!"));
+            return null;
         }
     }
 
@@ -202,7 +213,10 @@ public class Item
 
     public enum ItemType
     {
-        Weapon, Food, Armor, Material
+        Weapon, 
+        Food, 
+        Armor, 
+        Material
     }
 }
 
@@ -259,7 +273,9 @@ public class SpriteStorage
     public class RegisterSprite
     {
         public string name;
+        public string displayName;
         public Sprite sprite;
+        public Vector2 handOffset = Vector2.zero;
     }
 
     public void init()

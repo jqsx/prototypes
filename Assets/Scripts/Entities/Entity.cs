@@ -34,7 +34,7 @@ public class Entity : MonoBehaviour
 
     private void regenerationTick()
     {
-        Health = Mathf.Clamp(Health + 0.5f, 0f, EntityStatistics.MaxHealth);
+        Health = Mathf.Clamp(Health + 0.5f, 0f, EntityStatistics.MaxHealth + EquipmentStatistics.MaxHealth + EffectStatistics.MaxHealth);
     }
 
     public void damage(float amount, Entity from, DamageCause damageCause)
@@ -51,7 +51,7 @@ public class Entity : MonoBehaviour
 
         GAMEINITIALIZER.SpawnBloodSplatter(transform.position);
 
-        Health = Mathf.Clamp(Health - amount, 0, EntityStatistics.MaxHealth);
+        Health = Mathf.Clamp(Health - amount, 0, EntityStatistics.MaxHealth + EquipmentStatistics.MaxHealth + EffectStatistics.MaxHealth);
         GAMEINITIALIZER.spawnDamageIndicator(amount, transform.position);
         if (Health == 0)
         {
@@ -117,9 +117,9 @@ public class Entity : MonoBehaviour
         {
             if (col.transform == transform) continue;
             Entity entity = col.GetComponent<Entity>();
-            if (entity)
+            if (entity != null)
             {
-                entity.damage((EntityStatistics.Damage + EquipmentStatistics.Damage) * (1.5f + EntityStatistics.CritDamage + EquipmentStatistics.CritDamage), this);
+                entity.damage((EntityStatistics.Damage + EquipmentStatistics.Damage + EffectStatistics.Damage) * (isCrit ? (1.5f + EntityStatistics.CritDamage + EquipmentStatistics.CritDamage + EffectStatistics.CritDamage) : 1), this);
             }
         }
     }
@@ -134,15 +134,33 @@ public class Entity : MonoBehaviour
         return stats;
     }
 
+    public virtual void recalculateEquipment(ItemStack heldItem, Inventory armor)
+    {
+        Statistics statistics = new Statistics();
+        if (heldItem != null) statistics.Add(heldItem.item.itemStatistics);
+        if (armor != null)
+        {
+            foreach (ItemStack item in armor.slots)
+            {
+                if (item != null)
+                {
+                    statistics.Add(item.item.itemStatistics);
+                }
+            }
+        }
+        EquipmentStatistics = statistics;
+    }
+
     public void setTool(ItemStack itemStack)
     {
+        recalculateEquipment(itemStack, getArmorInventory());
         if (currentlySelectedVisual != null)
             Destroy(currentlySelectedVisual);
         if (itemStack == null) return;
         GameObject tool = new GameObject();
         tool.transform.parent = HandPivot.transform;
         tool.transform.localPosition = Vector3.zero;
-        tool.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        tool.transform.localRotation = Quaternion.Euler(0, 0, -90);
         tool.AddComponent<SpriteRenderer>().sprite = itemStack.item.icon;
         
         if (itemStack.item is ToolItem)
@@ -152,6 +170,11 @@ public class Entity : MonoBehaviour
         }
 
         currentlySelectedVisual = tool;
+    }
+
+    public virtual Inventory getArmorInventory()
+    {
+        return null;
     }
 }
 
@@ -201,18 +224,27 @@ public class Statistics
 
     public string toString()
     {
-        string text = "";
-        text += Level + "L\n";
-        if (Damage != 0) text += "Damage: " + Damage + "\n";
-        if (CritDamage != 0) text += "Crit.Damage: " + CritDamage + "%\n";
-        if (CritChance != 0) text += "Crit.Chance: " + CritChance + "%\n";
-        if (MoveSpeed != 0) text += "Speed: " + MoveSpeed + "\n";
-        if (AttackSpeed != 0) text += "Attack Speed: " + AttackSpeed + "\n";
-        if (MaxHealth != 0) text += "Health: " + MaxHealth + "\n";
-        if (Defence != 0) text += "Defence: " + Defence;
-        if (KnockBackResistance != 0) text += "Knockback Resistance: " + KnockBackResistance + "%\n";
+        string text = "\n";
+        if (Damage != 0) text += "<color=red>Damage: " + Mathf.Round(Damage * 10.0f) / 10.0f + "</color>\n";
+        if (CritDamage != 0) text += "<color=orange>Crit.Damage: " + CritDamage + "%</color>\n";
+        if (CritChance != 0) text += "<color=yellow>Crit.Chance: " + CritChance + "%</color>\n";
+        if (MoveSpeed != 0) text += "<color=cyan>Speed: " + Mathf.Round(MoveSpeed * 10.0f) / 10.0f + "</color>\n";
+        if (AttackSpeed != 0) text += "<color=#55ff99>Attack Speed: " + Mathf.Round(AttackSpeed * 10.0f) / 10.0f + "</color>\n";
+        if (MaxHealth != 0) text += "<color=red>Health: " + Mathf.Round(MaxHealth * 10.0f) / 10.0f + "</color>\n";
+        if (Defence != 0) text += "<color=blue>Defence: " + Mathf.Round(Defence * 10.0f) / 10.0f + "</color>\n";
+        if (KnockBackResistance != 0) text += "<b>Knockback Resistance: " + KnockBackResistance + "%</b>\n";
 
         return text;
+    }
+
+    public static Statistics getLevelDerivedStats(int level)
+    {
+        Statistics statistics = new Statistics();
+        statistics.Damage = level + Random.Range(-1.5f, 2f);
+        statistics.MoveSpeed = Random.Range(1f, 7f);
+        statistics.Level = level;
+
+        return statistics;
     }
 }
 
