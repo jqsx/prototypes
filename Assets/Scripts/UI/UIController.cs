@@ -3,18 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static UIController instance { get; private set; }
+
+    public static bool isDataLoaded = false;
+
+    private void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SaveError(string error)
     {
-        
+
+    }
+
+    public void LoadError(string error) 
+    {
+
+    }
+
+    public void UISaveData()
+    {
+        SaveManager.SaveData();
+    }
+
+    public void UILoadData()
+    {
+        SaveManager.FetchData();
+    }
+
+    public void continueGame()
+    {
+        if (!SaveManager.wasThereAnError)
+        {
+            SceneManager.LoadScene("overworld");
+        }
+    }
+
+    public void startNewGame()
+    {
+
+    }
+
+    public void resetSave()
+    {
+        SaveManager.resetSave();
     }
 }

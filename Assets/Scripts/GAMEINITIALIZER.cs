@@ -40,6 +40,11 @@ public class GAMEINITIALIZER : MonoBehaviour
 
     private void Start()
     {
+        init();
+    }
+
+    public static void init()
+    {
         globalSeed = new Vector2(Random.Range(-1000f, 1000f), Random.Range(-1000f, 1000f));
 
         if (roomGenerator.GEN != null)
@@ -283,12 +288,12 @@ public class SpriteStorage
         instance = this;
         foreach(RegisterSprite registerSprite in Weapons)
         {
-            weaponSprites.Add(registerSprite.name, registerSprite.sprite);
+            if (!weaponSprites.ContainsKey(registerSprite.name)) weaponSprites.Add(registerSprite.name, registerSprite.sprite);
         }
 
         foreach (RegisterSprite registerSprite in Armor)
         {
-            armorSprites.Add(registerSprite.name, registerSprite.sprite);
+            if (!armorSprites.ContainsKey(registerSprite.name)) armorSprites.Add(registerSprite.name, registerSprite.sprite);
         }
 
         Debug.Log("Initialized Sprite Storage");

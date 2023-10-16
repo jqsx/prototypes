@@ -8,6 +8,9 @@ public class Player : Entity
     Rigidbody2D rb;
     float lastDirectionx = 1f;
 
+    public static bool setLoadedPosition = false;
+    public static Vector2 loadedPosition = Vector2.zero;
+
     public static Player player;
 
     void Awake()
@@ -16,6 +19,7 @@ public class Player : Entity
 
         player = this;
         setTool(JQUI.InventoryController.inventory.slots[JQUI.InventoryController.instance.selectedSlot]);
+        if (setLoadedPosition ) { transform.position = loadedPosition; setLoadedPosition = false; }
     }
 
     void Update()
