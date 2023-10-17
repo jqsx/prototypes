@@ -46,7 +46,8 @@ public class UIController : MonoBehaviour
 
     public void startNewGame()
     {
-
+        SceneManager.LoadScene("overworld");
+        resetSave();
     }
 
     public void resetSave()

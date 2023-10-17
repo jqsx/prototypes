@@ -18,8 +18,18 @@ public class Player : Entity
         rb = GetComponent<Rigidbody2D>();
 
         player = this;
-        setTool(JQUI.InventoryController.inventory.slots[JQUI.InventoryController.instance.selectedSlot]);
-        if (setLoadedPosition ) { transform.position = loadedPosition; setLoadedPosition = false; }
+        if (setLoadedPosition) { transform.position = loadedPosition; setLoadedPosition = false; }
+        StartCoroutine(init());
+    }
+
+    IEnumerator init()
+    {
+        yield return new WaitWhile(() =>
+        {
+            return JQUI.InventoryController.instance != null;
+        });
+
+        if (JQUI.InventoryController.instance) setTool(JQUI.InventoryController.inventory.slots[JQUI.InventoryController.instance.selectedSlot]);
     }
 
     void Update()
