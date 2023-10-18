@@ -15,7 +15,6 @@ public class proceduralSpriteGenerator : MonoBehaviour
         int size = Random.Range(500, 1500);
         Texture2D tex = new Texture2D(size, size);
         tex.filterMode = FilterMode.Point;
-        tex.alphaIsTransparency = true;
         Vector2 middle = Vector2.one * size / 2f;
         for (int y = 0; y < tex.height; y++)
         {

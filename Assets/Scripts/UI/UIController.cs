@@ -28,6 +28,7 @@ public class UIController : MonoBehaviour
 
     public void UISaveData()
     {
+        if (SceneManager.GetActiveScene().name != "overworld") return;
         SaveManager.SaveData();
     }
 
@@ -53,5 +54,15 @@ public class UIController : MonoBehaviour
     public void resetSave()
     {
         SaveManager.resetSave();
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void debug_enter_dungeon()
+    {
+        SceneManager.LoadScene("dungeon");
     }
 }
