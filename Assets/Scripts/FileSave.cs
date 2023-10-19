@@ -32,6 +32,7 @@ public class FileSave
                         dataToLoad = reader.ReadToEnd();
                     }
                 }
+                loadedData = (GameData)JsonUtility.FromJson(dataToLoad, typeof(GameData));
             }
             catch (Exception e)
             {

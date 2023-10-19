@@ -15,7 +15,7 @@ namespace JQUI
         public static Inventory inventory;
         public static Inventory armor;
         Animator animator;
-        bool isOpen = false;
+        public static bool isOpen = false;
         public Transform hotbarSlotParent;
         public Transform visualSlotParent;
         public int currentlySelected = -1;
@@ -28,6 +28,8 @@ namespace JQUI
         public TMPro.TMP_Text cursorText;
 
         public int selectedSlot = 0;
+
+        public Inventory inspectorDisplay;
 
         private void Awake()
         {
@@ -101,8 +103,9 @@ namespace JQUI
         // Update is called once per frame
         void Update()
         {
+            inspectorDisplay = inventory;
             if (instance == null) instance = this;
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.Tab) && !PauseMenuScript.isGamePaused)
             {
                 if (isOpen) animator.Play("Close");
                 else animator.Play("Open");
@@ -112,6 +115,12 @@ namespace JQUI
 
             UpdateInventoryInput();
             InputControl();
+        }
+
+        public void CloseInventory()
+        {
+            isOpen = false;
+            animator.Play("Close");
         }
 
         public void InputControl()
@@ -139,7 +148,7 @@ namespace JQUI
             {
                 Inventory parent = hoverSlot.parent;
                 ItemStack aa = parent.slots[hoverSlot.slotNumber];
-                if (aa != null)
+                if (aa != null && aa.item != null && aa.item.name.Length > 0)
                 {
                     string color = "white";
                     int level = aa.item.itemStatistics.Level;
@@ -164,7 +173,7 @@ namespace JQUI
                 ItemStack slot = inventory.slots[i];
                 Sprite icon = noitem;
                 string amount = "";
-                if (slot != null)
+                if (slot != null && slot.item != null && slot.item.name.Length > 0)
                 {
                     icon = slot.item.icon;
                     amount = "x" + slot.amount;
@@ -189,7 +198,7 @@ namespace JQUI
                 currentlySelected = -1;
                 updateInventoryDisplay();
             }
-            else if (self.parent.slots[self.slotNumber] != null)
+            else if (self.parent.slots[self.slotNumber] != null && self.parent.slots[self.slotNumber].item != null && self.parent.slots[self.slotNumber].item.name.Length > 0)
             {
                 currentlySelected = self.slotNumber;
             }
@@ -234,7 +243,7 @@ public class Inventory
     public void drop(int index)
     {
         onDrop(index);
-        if (slots[index] == null) return;
+        if (slots[index] == null || slots[index].item == null || slots[index].item.name.Length == 0) return;
         PlayerController p = PlayerController.instance;
         GAMEINITIALIZER.SpawnItem(slots[index], (Vector2)p.transform.position - ((Vector2)p.transform.position - PlayerController.mouseWorldPosition).normalized);
         slots[index] = null;
@@ -252,12 +261,12 @@ public class Inventory
         foreach(ItemStack slot in slots)
         {
             if (item == null) return null;
-            if (slot == null) continue;
+            if (slot == null || item.item == null || item.item.name.Length == 0) continue;
             item = slot.addItem(item);
         }
         for(int i = 0; i < slots.Length; i++)
         {
-            if (slots[i] == null)
+            if (slots[i] == null || slots[i].item == null || slots[i].item.name.Length == 0)
             {
                 slots[i] = item;
                 return null;

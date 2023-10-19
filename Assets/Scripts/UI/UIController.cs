@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        DontDestroyOnLoad(this);
     }
 
     public void SaveError(string error)
@@ -64,5 +65,20 @@ public class UIController : MonoBehaviour
     public void debug_enter_dungeon()
     {
         SceneManager.LoadScene("dungeon");
+    }
+
+    public void ReturnToMenu()
+    {
+        if ( SceneManager.GetActiveScene().name == "overworld" )
+        {
+            UISaveData();
+        }
+        else
+        {
+            GAMEINITIALIZER.globalGameLevel = 1;
+            JQUI.InventoryController.inventory = null;
+            JQUI.InventoryController.armor = null;
+        }
+        SceneManager.LoadScene("mainmenu");
     }
 }

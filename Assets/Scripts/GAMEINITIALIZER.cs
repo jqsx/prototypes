@@ -248,7 +248,7 @@ public class ItemStack
 
     public ItemStack addItem(ItemStack stack)
     {
-        if (stack.item != item) return stack;
+        if (stack.item.name != item.name) return stack;
         int total = stack.amount + amount;
         if (total > item.maxStackSize)
         {
