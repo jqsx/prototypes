@@ -6,8 +6,8 @@ using System.IO;
 
 public class FileSave
 {
-    public string dirPath = "";
-    public string fileName = "";
+    public string dirPath = "./";
+    public string fileName = "GameData.proto";
 
     public FileSave(string dirPath, string fileName)
     {
@@ -17,8 +17,8 @@ public class FileSave
 
     public GameData Load()
     {
-        string fullPath = Path.Combine(dirPath, fileName);
-
+        string fullPath = Path.GetFullPath(Path.Combine(dirPath, fileName));
+        Debug.Log(fullPath);
         GameData loadedData = null;
         if (File.Exists(fullPath))
         {

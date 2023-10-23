@@ -43,6 +43,11 @@ public class BasicAI : Entity
 
     private void Update()
     {
+        BasicAIUpdate();
+    }
+
+    public void BasicAIUpdate()
+    {
         //if (PlayerController.instance) target = PlayerController.instance.transform.position;
 
         if (faction == Faction.Aggressive && !targetEnemy)

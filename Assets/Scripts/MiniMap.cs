@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MiniMap : MonoBehaviour
 {
     public static List<roomData> data = new List<roomData>();
     private Vector2 far;
     private Vector2 close;
+    private Vector2 size;
 
     public Texture2D mapTexture;
 
-    public RectTransform content;
+    Image image;
 
     private void Awake()
     {
+        image = GetComponent<Image>();
         data.Clear();
     }
 
@@ -51,7 +54,7 @@ public class MiniMap : MonoBehaviour
             else if (far.y < _b.y) far.y = _b.y;
         }
 
-        Vector2 size = far - close;
+        size = far - close;
         mapTexture = new Texture2D((int)size.x, (int)size.y);
         mapTexture.filterMode = FilterMode.Point;
         for (int y = 0; y < mapTexture.height; y++)
@@ -79,8 +82,13 @@ public class MiniMap : MonoBehaviour
 
         mapTexture.Apply();
 
-        SpriteRenderer renderer = gameObject.AddComponent<SpriteRenderer>();
-        renderer.sprite = Sprite.Create(mapTexture, new Rect(Vector2.zero, new Vector2(mapTexture.width, mapTexture.height)), Vector2.zero);
+        Rect rect = new Rect(Vector2.zero, new Vector2(mapTexture.width, mapTexture.height));
+        image.sprite = Sprite.Create(mapTexture, rect, Vector2.zero);
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void OnDrawGizmos()

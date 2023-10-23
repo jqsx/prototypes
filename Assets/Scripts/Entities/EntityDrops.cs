@@ -21,7 +21,7 @@ public class EntityDrops : MonoBehaviour
         int count = Random.Range(amountOfDroppedItemsRange.x, amountOfDroppedItemsRange.y);
         for (int i = 0; i < count; i++)
         {
-            DropChance dropChance = dropChances[Random.Range(0, dropChances.Length - 1)];
+            DropChance dropChance = dropChances[Random.Range(0, dropChances.Length)];
             ItemStack itemstack = dropChance.getItem();
             if (itemstack != null) droppedItems.Add(itemstack);
         }

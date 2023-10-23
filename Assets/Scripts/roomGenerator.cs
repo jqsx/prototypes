@@ -25,11 +25,13 @@ public class roomGenerator : MonoBehaviour
 
     public static MiniMap map;
 
+    public MiniMap reference;
+
     void Awake()
     {
         Rooms = group.Rooms;
         if (setGroup) Rooms = setRoomGroup.Rooms;
-        map = GetComponent<MiniMap>();
+        map = reference;
         isClosing = false;
         GEN = this;
 

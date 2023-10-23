@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ItemDrop : MonoBehaviour
 {
-
+    float Start = 0;
     private void Awake()
     {
+        Start = Time.time;
     }
 
     public ItemDrop AssignItem(ItemStack item)
@@ -40,5 +41,10 @@ public class ItemDrop : MonoBehaviour
     public virtual ItemStack getStoredDrop()
     {
         return itemStack;
+    }
+
+    private void Update()
+    {
+        if (Start + 30 <  Time.time) Destroy(gameObject);
     }
 }

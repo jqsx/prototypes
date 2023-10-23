@@ -33,6 +33,10 @@ public class SaveManager
             Player.loadedPosition = gameData.playerPosition;
             InventoryController.inventory = gameData.playerInventory;
         }
+        else
+        {
+            Debug.Log("No Game Data");
+        }
     }
 
     public static void SaveData()

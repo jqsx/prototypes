@@ -235,10 +235,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droppedItems: []
-  amountOfDroppedItemsRange: {x: 1, y: 2}
+  amountOfDroppedItemsRange: {x: 1, y: 5}
   dropChances:
-  - chance: 1
-    levelRange: {x: 1, y: 50}
+  - chance: 0.1
+    levelRange: {x: 1, y: 5}
     amountRange: {x: 1, y: 1}
     item:
       name: a
@@ -259,6 +259,8 @@ MonoBehaviour:
         KnockBackResistance: 0
         RegenerationRate: 0
     itemType: 0
+    isID: 0
+    id: 0
     preset: 0
   - chance: 0.7
     levelRange: {x: 1, y: 1}
@@ -282,7 +284,34 @@ MonoBehaviour:
         KnockBackResistance: 0
         RegenerationRate: 0
     itemType: 3
+    isID: 0
+    id: 0
     preset: 1
+  - chance: 0.7
+    levelRange: {x: 1, y: 1}
+    amountRange: {x: 1, y: 3}
+    item:
+      name: Coin
+      icon: {fileID: 1140110899, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+      description: Currency
+      itemType: 3
+      maxStackSize: 32
+      itemStatistics:
+        Level: 1
+        XP: 0
+        Damage: 0
+        CritDamage: 0
+        CritChance: 0
+        MoveSpeed: 0
+        AttackSpeed: 0
+        MaxHealth: 0
+        Defence: 0
+        KnockBackResistance: 0
+        RegenerationRate: 0
+    itemType: 3
+    isID: 1
+    id: 1
+    preset: 0
 --- !u!1001 &482562031794449780
 PrefabInstance:
   m_ObjectHideFlags: 0

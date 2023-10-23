@@ -19,12 +19,12 @@ public class UIController : MonoBehaviour
 
     public void SaveError(string error)
     {
-
+        Debug.LogError(error);
     }
 
     public void LoadError(string error) 
     {
-
+        Debug.LogError(error);
     }
 
     public void UISaveData()
@@ -73,12 +73,9 @@ public class UIController : MonoBehaviour
         {
             UISaveData();
         }
-        else
-        {
-            GAMEINITIALIZER.globalGameLevel = 1;
-            JQUI.InventoryController.inventory = null;
-            JQUI.InventoryController.armor = null;
-        }
+        GAMEINITIALIZER.globalGameLevel = 1;
+        JQUI.InventoryController.inventory = null;
+        JQUI.InventoryController.armor = null;
         SceneManager.LoadScene("mainmenu");
     }
 }

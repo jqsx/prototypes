@@ -5,10 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
+    public bool exitDungeon = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GAMEINITIALIZER.globalGameLevel++;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GAMEINITIALIZER.init();
+        if (exitDungeon)
+        {
+            SceneManager.LoadScene("overworld");
+        }
+        else
+        {
+            GAMEINITIALIZER.globalGameLevel++;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GAMEINITIALIZER.init();
+        }
     }
 }

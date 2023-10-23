@@ -34,4 +34,9 @@ public class Smily : BasicAI
             GAMEINITIALIZER.SpawnItem(new ItemStack(randomItem, Random.Range(1, randomItem.maxStackSize)), transform.position);
         }
     }
+
+    private void Update()
+    {
+        BasicAIUpdate();
+    }
 }
