@@ -202,7 +202,7 @@ TextureImporter:
         width: 38
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 3, y: 1, z: 3, w: 1}
       outline: []
       physicsShape: []
@@ -210,6 +210,48 @@ TextureImporter:
       bones: []
       spriteID: fdbf897ac926a1b4296b38325e8e854c
       internalID: 1607795896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: All_2
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 72
+        width: 4
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba68e9a6d1d5f1d46864e6fb4d54646d
+      internalID: 1114194504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: All_3
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 72
+        width: 4
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff37639677a5b614bb6db878da76acba
+      internalID: 1269670510
       vertices: []
       indices: 
       edges: []
@@ -227,6 +269,8 @@ TextureImporter:
     nameFileIdTable:
       All_0: -631428391
       All_1: 1607795896
+      All_2: 1114194504
+      All_3: 1269670510
       Health gone: -738507890
       health full: -2032935270
       heart: -2138159393
