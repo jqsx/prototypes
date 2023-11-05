@@ -86,7 +86,7 @@ public class DropChance
     {
         if (Random.Range(0f, 1f) < chance)
         {
-            int level = Random.Range(levelRange.x, levelRange.y);
+            int level = Random.Range(Mathf.Clamp(GAMEINITIALIZER.globalGameLevel - 2, 1, GAMEINITIALIZER.globalGameLevel), GAMEINITIALIZER.globalGameLevel + 2);
 
             float damage = level * 2 + 1;
 

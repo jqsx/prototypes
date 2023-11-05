@@ -19,7 +19,9 @@ public class Vendor : MonoBehaviour
 
     public bool isRandom = false;
 
-    private void Awake()
+    private int purchasedItems = 0;
+
+    void Awake()
     {
         displayText.text = "<color=orange>[E]</color> " + text_display;
         if (isRandom) GenerateRandomPurchases();
@@ -45,6 +47,11 @@ public class Vendor : MonoBehaviour
     public void GenerateRandomPurchases()
     {
 
+    }
+
+    public void ItemHasBeenPurchased()
+    {
+        purchasedItems++;
     }
 
     [System.Serializable]

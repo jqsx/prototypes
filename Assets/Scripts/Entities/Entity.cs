@@ -5,6 +5,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     [Header("ENTITY PARAMETERS")]
+    public string EntityName = "Entity";
     public float Health = 20f;
     public Statistics EntityStatistics = new Statistics();
     public Statistics EquipmentStatistics = new Statistics();

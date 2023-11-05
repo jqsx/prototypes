@@ -1,10 +1,17 @@
-﻿using System;
+﻿using JQUI;
+using System;
 using System.Collections.Generic;
+using System.Xml;
+using static UnityEditor.Progress;
 
 [Serializable]
 public class Quest
 {
     public string questName = "QuestName";
+    public virtual bool isComplete()
+    {
+        return false;
+    }
 }
 
 namespace Quests
@@ -37,6 +44,36 @@ namespace Quests
             }
             questName = "Quest to collect: <color=cyan>" + toCollect + "</color>for <color=cyan>" + rew;
         }
+
+        public override bool isComplete()
+        {
+            Dictionary<string, int> items = new Dictionary<string, int>();
+
+            foreach (ItemStack item in InventoryController.inventory.slots)
+            {
+                if (item != null)
+                {
+                    if (!items.ContainsKey(item.item.name))
+                    {
+                        items.Add(item.item.name, item.amount);
+                    }
+                    else
+                    {
+                        items.TryGetValue(item.item.name, out int a);
+                        items.Remove(item.item.name);
+                        items.Add(item.item.name, a + item.amount);
+                    }
+                }
+            }
+
+            foreach (ItemStack item in itemsToCollect)
+            {
+                if (!items.ContainsKey(item.item.name)) return false;
+                items.TryGetValue(item.item.name, out int a);
+                if (a < item.amount) return false;
+            }
+            return true;
+        }
     }
 
     public class SlayerQuest : Quest
@@ -55,6 +92,19 @@ namespace Quests
             }
 
             this.rewards = rewards;
+        }
+
+        public override bool isComplete()
+        {
+            foreach (string key in SlayerEntityObjective.Keys)
+            {
+                int a = SlayerEntityObjective[key];
+
+                if (!QuestManager.entityKills.ContainsKey(key)) return false;
+                int k = QuestManager.entityKills[key];
+                if (k < a) return false;
+            }
+            return true;
         }
     }
 

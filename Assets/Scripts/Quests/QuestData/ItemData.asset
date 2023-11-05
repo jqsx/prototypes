@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd456c3a41528a44929352075c6ee07, type: 3}
+  m_Name: ItemData
+  m_EditorClassIdentifier: 
+  Currency:
+    name: Coin
+    icon: {fileID: 1140110899, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: Currency
+    itemType: 3
+    maxStackSize: 32
+    itemStatistics:
+      Level: 1
+      XP: 0
+      Damage: 0
+      CritDamage: 0
+      CritChance: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+      MaxHealth: 0
+      Defence: 0
+      KnockBackResistance: 0
+      RegenerationRate: 0
+  availableItems:
+  - name: Book
+    icon: {fileID: 1932919540, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: Just an old book
+    itemType: 3
+    maxStackSize: 15
+    itemStatistics:
+      Level: 1
+      XP: 0
+      Damage: 0
+      CritDamage: 0
+      CritChance: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+      MaxHealth: 0
+      Defence: 0
+      KnockBackResistance: 0
+      RegenerationRate: 0
+  - name: Golden Statue
+    icon: {fileID: -1927004159, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: A very shiny statue
+    itemType: 3
+    maxStackSize: 5
+    itemStatistics:
+      Level: 15
+      XP: 0
+      Damage: 0
+      CritDamage: 0
+      CritChance: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+      MaxHealth: 0
+      Defence: 0
+      KnockBackResistance: 0
+      RegenerationRate: 0
+  - name: Gunpowder
+    icon: {fileID: -697980555, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: Explosive material
+    itemType: 3
+    maxStackSize: 30
+    itemStatistics:
+      Level: 20
+      XP: 0
+      Damage: 0
+      CritDamage: 0
+      CritChance: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+      MaxHealth: 0
+      Defence: 0
+      KnockBackResistance: 0
+      RegenerationRate: 0
+  - name: Rune
+    icon: {fileID: 1386617657, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: An old tablet
+    itemType: 3
+    maxStackSize: 3
+    itemStatistics:
+      Level: 5
+      XP: 0
+      Damage: 0
+      CritDamage: 0
+      CritChance: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+      MaxHealth: 0
+      Defence: 0
+      KnockBackResistance: 0
+      RegenerationRate: 0
+  - name: A stick
+    icon: {fileID: -655277224, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: Just a stick... I'm not kidding it's just a stick!
+    itemType: 3
+    maxStackSize: 69
+    itemStatistics:
+      Level: 9999
+      XP: 0
+      Damage: 0
+      CritDamage: 0
+      CritChance: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+      MaxHealth: 0
+      Defence: 0
+      KnockBackResistance: 0
+      RegenerationRate: 0
+  - name: Rock
+    icon: {fileID: 237796174, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: 'Adding this one to the rock collection!
+
+      +1 cool rock!'
+    itemType: 3
+    maxStackSize: 30
+    itemStatistics:
+      Level: 2
+      XP: 0
+      Damage: 0
+      CritDamage: 0
+      CritChance: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+      MaxHealth: 0
+      Defence: 0
+      KnockBackResistance: 0
+      RegenerationRate: 0
+  - name: Sack of coins
+    icon: {fileID: -1017828461, guid: 64ad2ff173ddc4147a273fdedc08b3b5, type: 3}
+    description: Big money right there bucko
+    itemType: 3
+    maxStackSize: 5
+    itemStatistics:
+      Level: 10
+      XP: 0
+      Damage: 0
+      CritDamage: 0
+      CritChance: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+      MaxHealth: 0
+      Defence: 0
+      KnockBackResistance: 0
+      RegenerationRate: 0

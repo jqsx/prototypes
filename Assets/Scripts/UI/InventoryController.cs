@@ -26,6 +26,7 @@ namespace JQUI
 
         public Slot hoverSlot;
         public TMPro.TMP_Text cursorText;
+        public TMPro.TMP_Text cursorTextParent;
 
         public int selectedSlot = 0;
 
@@ -111,7 +112,10 @@ namespace JQUI
                 else animator.Play("Open");
                 isOpen = !isOpen;
             }
-            cursorText.rectTransform.position = Input.mousePosition;
+            cursorTextParent.rectTransform.position = Input.mousePosition;
+            cursorTextParent.text = cursorText.text;
+
+            cursorTextParent.gameObject.SetActive(cursorText.text.Length != 0);
 
             UpdateInventoryInput();
             InputControl();

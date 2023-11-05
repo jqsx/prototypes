@@ -11,10 +11,15 @@ public class UIController : MonoBehaviour
 
     public static bool isDataLoaded = false;
 
+    public QuestEntityData questEntityData;
+    public QuestItemData questItemData;
+
     private void Awake()
     {
         instance = this;
         DontDestroyOnLoad(this);
+
+        QuestManager.StartQuestManager();
     }
 
     public void SaveError(string error)
@@ -77,5 +82,13 @@ public class UIController : MonoBehaviour
         JQUI.InventoryController.inventory = null;
         JQUI.InventoryController.armor = null;
         SceneManager.LoadScene("mainmenu");
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (SceneManager.GetActiveScene().name == "overworld")
+        {
+            UISaveData();
+        }
     }
 }

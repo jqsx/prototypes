@@ -144,8 +144,8 @@ MonoBehaviour:
 
     Price: item'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c0173f6613c3b400f80d1e938fdaa30c, type: 2}
-  m_sharedMaterial: {fileID: 8665529550005764660, guid: c0173f6613c3b400f80d1e938fdaa30c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cd47767bbc9df48eb9df943c58610ed3, type: 2}
+  m_sharedMaterial: {fileID: -8980036429576265671, guid: cd47767bbc9df48eb9df943c58610ed3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
